@@ -8,29 +8,29 @@ import Contact from "../components/contact";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <Header />
+      <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        <Header />
 
-      <main className="flex flex-col gap-16">
-        {/* About Section */}
-        <About />
+        <main className="flex flex-col gap-16">
+          {/* About Section */}
+          <About />
 
-        {/* Experience Section */}
-        <Experience />
+          {/* Experience Section */}
+          <Experience />
 
-        {/* Skills Section */}
-        <Skills/>
+          {/* Skills Section */}
+          <Skills />
 
-        {/* Education Section */}
-        <Education />
+          {/* Education Section */}
+          <Education />
 
-        {/* Contact Section */}
-        <Contact />
-      </main>
+          {/* Contact Section */}
+          <Contact />
+        </main>
 
-      <footer className="text-center text-sm">
-        © {new Date().getFullYear()} Srikar Sistla. All rights reserved. Hire me LOL
-      </footer>
-    </div>
+        <footer className="text-center text-sm">
+          © {new Date().getFullYear()} Srikar Sistla. All rights reserved. Hire me LOL
+        </footer>
+      </div>
   );
-}
+}      
