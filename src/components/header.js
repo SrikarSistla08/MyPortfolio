@@ -1,5 +1,4 @@
-import React from 'react';
-//import Link from 'next/link';
+import Link from 'next/link';
 
 function Header() {
     return (
@@ -19,11 +18,12 @@ function Header() {
                     <div className="hover:text-stone-500 transition-colors duration-200">
                         <li><a href="#contact">Contact</a></li>
                     </div>
-                    {/*<div className="hover:text-stone-500 transition-colors duration-200">
-                        <li>
-                            <Link href="../app/photography">Photography</Link>
-                        </li>
-                    </div>*/}
+                    <div className="hover:text-stone-500 transition-colors duration-200">
+                        <li><Link href="#creations">Photography</Link></li>
+                    </div>
+                    <div className="hover:text-stone-500 transition-colors duration-200">
+                        <li><Link href="#creations">Music</Link></li>
+                    </div>
                 </ul>
             </nav>
         </header>
