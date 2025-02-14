@@ -19,7 +19,7 @@ function Header() {
                         <li><a href="#contact">Contact</a></li>
                     </div>
                     <div className="hover:text-stone-500 transition-colors duration-200">
-                        <li><Link href="#creations">My Creations</Link></li>
+                        <li><Link href="#creations">Creations</Link></li>
                     </div>
                     {/* <div className="hover:text-stone-500 transition-colors duration-200">
                         <li><Link href="#creations">Music</Link></li>
