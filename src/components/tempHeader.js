@@ -5,8 +5,8 @@ function Header() {
     return (
         <header className="mb-12 flex p-4 justify-left items-center">
             <Image
-            className="inline-block align-middle mr-4"
-                vertical-align="left"
+            className="rounded-full mr-4"
+                vertical-align="middle"
                 src="/Profile.jpg"
                 alt="Srikar Sistla"
                 width={70}
@@ -16,7 +16,7 @@ function Header() {
             />
             <h1 className="text-5xl font-bold old-standard-tt-regular-italic hover:text-stone-500 transition-colors duration-200">Srikar Sistla</h1>
             <nav>
-                <ul className="flex gap-4">
+                <ul className="flex">
                 </ul>
             </nav>
         </header>
