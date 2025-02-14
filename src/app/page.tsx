@@ -1,5 +1,4 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import Header from "../components/header";
 import About from "../components/about";
