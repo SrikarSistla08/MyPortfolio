@@ -64,3 +64,8 @@ body {
   object-fit: cover;
   border-radius: 0.5rem;
 }
+
+.experience-container {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}

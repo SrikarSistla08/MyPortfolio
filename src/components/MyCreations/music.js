@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import tempHeader from '../tempHeader';
 
 export default function Music() {
   return (
     <div className="min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <header className="mb-12">
+      <header className="mb-12 experience-container">
         <Link href="/" className="text-2xl font-bold hover:text-stone-500 transition-colors duration-200">
-          ← Back to Home
+          {tempHeader()}
         </Link>
         <h1 className="text-4xl font-bold mt-4">My Music</h1>
       </header>

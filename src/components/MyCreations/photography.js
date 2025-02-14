@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Instafeed from 'instafeed.js';
+import tempHeader from '../tempHeader';
 
 export default function Photography() {
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function Photography() {
     <div className="min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <header className="mb-12">
         <Link href="/" className="text-2xl font-bold hover:text-stone-500 transition-colors duration-200">
-            ← Back to Home
+          {tempHeader()}
         </Link>
         <h1 className="text-4xl font-bold mt-4">My Photography</h1>
       </header>

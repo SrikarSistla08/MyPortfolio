@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import tempHeader from "../tempHeader";
 
 const projectsData = [
   {
@@ -37,10 +38,13 @@ const Projects = () => {
     : projectsData.filter(item => item.type === filter);
 
     return (
-        <main>
-            <div className="container mx-auto px-7 py-8 bg-gradient-to-br from-slate-400 to-slate-900 shadow-2xl rounded-lg border border-slate-600 transform">
-            <h2 className="text-4xl font-bold mb-8 text-white text-center animate-pulse">My Projects, Certifications, and Awards</h2>
-            <div className="mb-8 bg-slate-800 p-4 rounded-lg shadow-inner">
+        <main className="min-h-screen p-8 sm:p-20">
+            <Link href="/" className="text-2xl font-bold hover:text-stone-500 transition-colors duration-200">
+                {tempHeader()}
+            </Link>
+            <div className="experience-container justify-between items-center grid justify-center items-center flex-col w-full h-full p-4">
+            <h2 className="text-5xl font-bold mb-8 text-white text-left font-bold old-standard-tt-regular-italic hover:animate-pulse duration-200">Projects</h2>
+            <div className="mb-4 bg-slate-800 p-4 rounded-lg shadow-inner">
                 <label htmlFor="filter" className="mr-4 text-white font-semibold">Filter by:</label>
                 <select
                 id="filter"
@@ -54,7 +58,7 @@ const Projects = () => {
                 <option value="Award">Awards</option>
                 </select>
             </div>
-        
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
                 {filteredProjects.map((item, index) => (
                 <ProjectItem key={index} {...item} />
