@@ -37,29 +37,31 @@ const Projects = () => {
     : projectsData.filter(item => item.type === filter);
 
     return (
-        <div className="flex flex-col items-center container mx-auto px-10 py-8 bg-gradient-to-br from-slate-700 to-slate-900 shadow-2xl rounded-lg border border-slate-600 transform">
-          <h2 className="text-4xl font-bold mb-8 text-white text-center animate-pulse">My Projects, Certifications, and Awards</h2>
-          <div className="mb-8 bg-slate-800 p-4 rounded-lg shadow-inner">
-            <label htmlFor="filter" className="mr-4 text-white font-semibold">Filter by:</label>
-            <select
-              id="filter"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-              className="border rounded p-2 bg-slate-700 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-            >
-              <option value="All">All</option>
-              <option value="Project">Projects</option>
-              <option value="Certification">Certifications</option>
-              <option value="Award">Awards</option>
-            </select>
-          </div>
-    
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-            {filteredProjects.map((item, index) => (
-              <ProjectItem key={index} {...item} />
-            ))}
-          </div>
-        </div>
+        <main>
+            <div className="container mx-auto px-7 py-8 bg-gradient-to-br from-slate-400 to-slate-900 shadow-2xl rounded-lg border border-slate-600 transform">
+            <h2 className="text-4xl font-bold mb-8 text-white text-center animate-pulse">My Projects, Certifications, and Awards</h2>
+            <div className="mb-8 bg-slate-800 p-4 rounded-lg shadow-inner">
+                <label htmlFor="filter" className="mr-4 text-white font-semibold">Filter by:</label>
+                <select
+                id="filter"
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                className="border rounded p-2 bg-slate-700 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                >
+                <option value="All">All</option>
+                <option value="Project">Projects</option>
+                <option value="Certification">Certifications</option>
+                <option value="Award">Awards</option>
+                </select>
+            </div>
+        
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+                {filteredProjects.map((item, index) => (
+                <ProjectItem key={index} {...item} />
+                ))}
+            </div>
+            </div>
+        </main>
       );
 };
 
