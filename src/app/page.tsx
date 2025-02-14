@@ -1,4 +1,4 @@
-import Image from "next/image";
+import React from "react";
 import Header from "../components/header";
 import About from "../components/about";
 import Experience from "../components/experience";

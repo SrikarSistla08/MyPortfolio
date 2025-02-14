@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 function Header() {
     return (
@@ -19,7 +20,9 @@ function Header() {
                         <li><a href="#contact">Contact</a></li>
                     </div>
                     <div className="hover:text-stone-500 transition-colors duration-200">
-                        <li><a href="@components/photography">Photography</a></li>
+                        <li>
+                            <Link href="../app/photography">Photography</Link>
+                        </li>
                     </div>
                 </ul>
             </nav>
