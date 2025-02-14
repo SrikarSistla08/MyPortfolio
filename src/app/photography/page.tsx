@@ -29,10 +29,10 @@ export default function Photography() {
         <p className="mb-9">The perspective towards life keeps changing</p>
         <div id="instafeed" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
         <p className="mt-8 mb-4">Follow me on Instagram for more:</p>
-        <a 
-          href="https://www.instagram.com/vhs.dawn/" 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <a
+          href="https://www.instagram.com/vhs.dawn/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-6 rounded-lg hover:from-purple-500 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
         >
           @vhs.dawn on Instagram

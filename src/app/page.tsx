@@ -37,11 +37,11 @@ export default function Home() {
             <h2 className="text-3xl font-bold hover:text-stone-400 transition duration-200 hover:underline">My Creations</h2>
           </div>
           <div className="flex gap-8">
-            <Link href="/photography" className="flex-1 bg-purple-100 p-6 rounded-lg hover:bg-purple-200 transition-colors duration-200">
+            <Link href="/photography" className="inline-block bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-6 rounded-lg hover:from-purple-500 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
               <h3 className="text-xl font-semibold mb-2">Photography</h3>
               <p>Explore my visual journey through Instagram</p>
             </Link>
-            <Link href="/music" className="flex-1 bg-green-100 p-6 rounded-lg hover:bg-green-200 transition-colors duration-200">
+            <Link href="/music" className="inline-block bg-gradient-to-r from-green-400 to-green-600 text-white font-bold py-3 px-6 rounded-lg hover:from-green-500 hover:to-green-700 transition-all duration-300 transform hover:scale-105">
               <h3 className="text-xl font-semibold mb-2">Music</h3>
               <p>Listen to my musical creations on Spotify</p>
             </Link>

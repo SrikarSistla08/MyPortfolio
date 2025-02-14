@@ -12,10 +12,10 @@ export default function Music() {
       </header>
       <main>
         <p className="mb-8">Listen to my music on Spotify:</p>
-        <a 
-          href="https://open.spotify.com/artist/3u4Jjny8TUZkmRXh49BbwF?si=Q-wJmGyGT2mm4s4Cf3Ys6g" 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <a
+          href="https://open.spotify.com/artist/3u4Jjny8TUZkmRXh49BbwF?si=Q-wJmGyGT2mm4s4Cf3Ys6g"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block bg-gradient-to-r from-green-400 to-green-600 text-white font-bold py-3 px-6 rounded-lg hover:from-green-500 hover:to-green-700 transition-all duration-300 transform hover:scale-105"
         >
           My Spotify Page
