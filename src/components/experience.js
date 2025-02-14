@@ -31,7 +31,7 @@ function Experience() {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold">IT Project Manager | Santa's knights</h3>
+              <h3 className="text-xl font-semibold">IT Project Manager | Santas knights</h3>
               <p className="text-sm text-gray-600">06/2024-08/2024</p>
               <ul className="list-disc list-inside mt-2">
                 <li>Optimized product recommendations using machine learning, increasing average order value by 20%.</li>
@@ -45,7 +45,7 @@ function Experience() {
               <p className="text-sm text-gray-600">06/2023-08/2023</p>
               <ul className="list-disc list-inside mt-2">
                 <li>Optimized product recommendations using machine learning, increasing average order value by 20%.</li>
-                <li>Maintained an efficient ML pipeline using data integration, API Integration, improved project’s efficiency to 70%</li>
+                <li>Maintained an efficient ML pipeline using data integration, API Integration, improved projects efficiency to 70%</li>
                 <li>Developed a data visualization web application, improving customer service analytics.</li>
                 <li>Mentored junior engineers on Agile methodologies, ensuring project completion on time.</li>
               </ul>
