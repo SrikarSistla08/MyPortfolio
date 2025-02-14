@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/instafeed.js": "^2.0.0",
     "@types/node": "20.17.18",
     "@types/react": "19.0.8",
     "@types/react-dom": "^19",
