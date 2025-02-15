@@ -21,9 +21,9 @@ function Header() {
                     <div className="hover:text-stone-500 transition-colors duration-200">
                         <li><Link href="#creations">Creations</Link></li>
                     </div>
-                    {/* <div className="hover:text-stone-500 transition-colors duration-200">
-                        <li><Link href="#creations">Music</Link></li>
-                    </div>*/}
+                    <div className="hover:text-stone-500 transition-colors duration-200">
+                        <li><a href="/projects">Projects</a></li>
+                    </div>
                 </ul>
             </nav>
         </header>
