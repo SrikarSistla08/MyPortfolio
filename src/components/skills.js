@@ -9,7 +9,7 @@ function Skills() {
             </svg>
             <h2 className="text-3xl font-bold hover:text-stone-400 transition duration-200 hover:scale-110 ">Skills & Abilities</h2>
           </div>
-          <ul className="list-disc list-inside space-y-2">
+          <ul className="list-disc list-inside space-y-2 container text-md">
             <li>Data Analytics & BI: Power BI, Excel, SQL (MySQL, PostgreSQL)</li>
             <li>Programming & Machine Learning: Python (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn), R</li>
             <li>Frontend Development: React.js, Next.js, JavaScript, HTML, CSS, Tailwind</li>
