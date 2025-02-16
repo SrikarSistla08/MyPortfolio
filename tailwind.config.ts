@@ -8,7 +8,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Roboto', 'sans-serif'], // New font family
+      },
       colors: {
+        primary: '#0077B6', // New primary color
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

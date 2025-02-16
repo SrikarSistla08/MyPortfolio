@@ -9,10 +9,10 @@ import Contact from "../components/contact";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col gap-16 overflow-y-scroll grid grid-rows-[auto_1fr_auto] min-h-screen p-8 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <Header />
 
-      <main className="flex flex-col gap-16">
+      <main className="flex flex-col gap-16 overflow-y-scroll">
         {/* About Section */}
         <About />
 
@@ -44,6 +44,7 @@ export default function Home() {
             </Link>
           </div>
         </section>
+
         {/* Contact Section */}
         <Contact />
       </main>
