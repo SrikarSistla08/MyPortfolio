@@ -71,9 +71,9 @@ export default function Home() {
                 <h2 className="text-3xl font-bold hover:text-stone-400 transition duration-200 hover:underline">My Creations</h2>
               </div>
               <div className="flex gap-8">
-                <Link href="/photography" className="inline-block bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-6 rounded-lg hover:from-purple-500 hover:to-pink-600 transition-all duration-1000 hover:undeline">
+                <Link href="/photography" className="inline-block bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-6 rounded-lg hover:from-purple-500 hover:to-pink-600 transition-all duration-1000 hover:online">
                   <h3 className="text-xl font-semibold mb-2">Photography</h3>
-                  <p>Explore my visual journey through Instagram</p>
+                  <p className="mb-4 ">Explore my visual journey through Instagram</p>
                 </Link>
                 <Link href="/music" className="inline-block bg-gradient-to-r from-green-400 to-green-600 text-white font-bold py-3 px-6 rounded-lg hover:from-green-500 hover:to-green-700 transition-all duration-300 transform hover:undeline">
                   <h3 className="text-xl font-semibold mb-2">Music</h3>
