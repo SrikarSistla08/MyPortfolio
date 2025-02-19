@@ -69,3 +69,11 @@ body {
   margin-bottom: 40px;
   margin-top: 40px;
 }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
