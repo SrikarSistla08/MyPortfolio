@@ -21,12 +21,12 @@ function About() {
             <h2 className="text-3xl font-bold hover:text-stone-400 transition duration-200 hover:scale-110 ">About Me</h2>
           </div>
           <p className="text-lg sm:text-justify container">
-            Im Srikar Sistla, a passionate Data / Business Analyst based in Halethorpe, MD. With a strong background in Information Systems and Computer Science, 
+            I&apos;m Srikar Sistla, a passionate Data / Business Analyst based in Halethorpe, MD. With a strong background in Information Systems and Computer Science, 
             I bring a unique blend of analytical skills and technical expertise to the table. My experience spans software engineering, data analysis, and project management, allowing me to approach problems from multiple angles. 
-            Im particularly adept at leveraging technologies like Power BI, Python, and React.js to drive business growth and optimize processes.
-            Whether its developing AI platforms, creating data visualization tools, or managing cross-functional teams, Im committed to delivering innovative solutions that make a real impact.
+            I&apos;m particularly adept at leveraging technologies like Power BI, Python, and React.js to drive business growth and optimize processes.
+            Whether it&apos;s developing AI platforms, creating data visualization tools, or managing cross-functional teams, I&apos;m committed to delivering innovative solutions that make a real impact.
             <br></br><br></br>
-            Im eager to collaborate with like-minded individuals, share my knowledge, and contribute to impactful projects that drive business success. Feel free to reach out if you're interested in discussing your projects or any other opportunities.
+            I&apos;m eager to collaborate with like-minded individuals, share my knowledge, and contribute to impactful projects that drive business success. Feel free to reach out if you&apos;re interested in discussing your projects or any other opportunities.
           </p>
         </section>
     );
