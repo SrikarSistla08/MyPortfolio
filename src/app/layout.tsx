@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Srikar Sistla",
-  description: "This is my fun space for weird stuff",
+  description: "This is my portfolio and my space to see fun stuff!!",
 };
 
 export default function RootLayout({

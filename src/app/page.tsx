@@ -7,6 +7,7 @@ import Experience from "../components/experience";
 import Skills from "../components/skills";
 import Education from "../components/education";
 import Contact from "../components/contact";
+import Footer from "../components/footer";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => {
@@ -17,7 +18,7 @@ const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string 
 
   return (
     <section
-      ref={ref}
+      ref={ref as unknown as React.RefObject<HTMLElement>}
       className={`transition-all duration-1000 ${
         isIntersecting
           ? "opacity-100 translate-y-0"
@@ -30,9 +31,10 @@ const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string 
 };
 
 
+
 export default function Home() {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] max-h-screen p-8 gap-16 sm:p-20 font-">
+    <div className="grid grid-rows-[auto_1fr_auto] max-h-screen p-8 gap-16 sm:p-20">
       <AnimatedSection>
         <Header />
       </AnimatedSection>
@@ -40,11 +42,11 @@ export default function Home() {
       <main className="flex flex-col gap-16 overflow-y-auto">
         <AnimatedSection>
           <About />
-          <div className="mt-8">
+          <div className="mt-3">
             <a
-              href="/path-to-your-resume.pdf"
+              href="Resume.pdf"
               download
-              className="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300"
+              className="inline-block bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-slate-700 transition-colors duration-300"
             >
               Download Resume
             </a>
@@ -89,9 +91,7 @@ export default function Home() {
         </AnimatedSection>
       </main>
 
-      <footer className="text-center text-sm flex items-center justify-center gap-2">
-        © {new Date().getFullYear()} Srikar Sistla. All rights reserved. Hire me LOL
-      </footer>
+      <Footer/>
     </div>
   );
 }
