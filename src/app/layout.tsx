@@ -33,4 +33,5 @@ export default function RootLayout({
     </html>
   );
 }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const inter = Inter({ subsets: ['latin'] })

@@ -7,7 +7,7 @@ import Experience from "../components/experience";
 import Skills from "../components/skills";
 import Education from "../components/education";
 import Contact from "../components/contact";
-import Footer from "../components/footer";
+import Footer from "@/components/footer";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => {
