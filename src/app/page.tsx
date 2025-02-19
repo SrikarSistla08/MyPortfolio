@@ -9,7 +9,7 @@ import Education from "../components/education";
 import Contact from "../components/contact";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
-const AnimatedSection = ({ children, className = "" }) => {
+const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => {
   const [ref, isIntersecting] = useIntersectionObserver({
     threshold: 0.1,
     triggerOnce: true,
@@ -28,6 +28,7 @@ const AnimatedSection = ({ children, className = "" }) => {
     </section>
   );
 };
+
 
 export default function Home() {
   return (
