@@ -1,3 +1,4 @@
+import { Advent_Pro } from "next/font/google";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -9,7 +10,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'], // New font family
+        sans: ['Roboto', 'arial', 'sans-serif'], // New font family
+        serif: ['Old Standard TT', 'serif'],
+        mono: ['SFMono-Regular', 'monospace'], // New mono font
+        oswald: ['Oswald', 'sans-serif'],
+        ramaraja: ['Ramaraja', 'serif'],
+        geist: ['Geist', 'sans-serif'],
+        honk: ['var(--font-honk)'],
+        Advent_Pro: ['var(--font-advent-pro)'],
       },
       colors: {
         primary: '#0077B6', // New primary color

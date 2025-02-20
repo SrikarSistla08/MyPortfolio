@@ -43,6 +43,15 @@ body {
   font-weight: 400;
   font-style: italic;
 }
+.honk-text {
+  font-family: var(--font-honk);
+}
+
+.advent-pro-text {
+  font-family: var(--font-advent-pro);
+  font-weight: 400;
+  font-style: normal;
+}
 
 .container {
   transition: all 0.3s ease-in-out;
