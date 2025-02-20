@@ -10,7 +10,7 @@ export default function Photography() {
     const feed = new Instafeed({
       accessToken: 'IGAAZAa77nYWBFBZAFBOYVFvN3B2bThyWVg3Nm9MRVh3QzRVSFY4VXV5NEFSRjJBc3VSay1BQ3lKTFhhOGNNbG54NHhMTjJKLVdFa004TW04MnJQVUdyczJ6R0J3WW5DSWxJb094blZAvT004a3QxSEZArREZAVU25QSkV0QkNyY3dodwZDZD',
       limit: 20,
-      template: '<a href="{{link}}" target="_blank"><img title="{{caption}}" src="{{image}}" class="hover:scale-95 transition-transform duration-400" /></a>',
+      template: '<a href="{{link}}" target="_blank"><img title="{{caption}}" src="{{image}}" class="aspect-auto hover:scale-95 transition-transform duration-400" /></a>',
       after: function() {
         // Add any code to run after images are added here
       }
@@ -28,7 +28,7 @@ export default function Photography() {
       </header>
       <main>
         <p className="mb-9 text-lg sm:text-xl font-[var(--font-advent-pro)] animate-wave-up">The perspective towards life keeps changing</p>
-        <div id="instafeed" className="container mb-4 bg-transparent p-4 rounded-lg shadow-inner grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div id="instafeed" className="columns-2 gap-4 sm:columns-3 sm:gap-8">
           {/* Instagram images will be added dynamically */}
         </div>
         <p className="mt-8 mb-4 text-lg sm:text-xl old-standard-tt-regular animate-slide-in-right">Follow me on Instagram for more:</p>

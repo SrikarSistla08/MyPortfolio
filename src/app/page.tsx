@@ -19,7 +19,7 @@ const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string 
   return (
     <section
       ref={ref as unknown as React.RefObject<HTMLElement>}
-      className={`transition-all duration-1000 ${
+      className={`bg-container bg-fixed transition-all duration-1000 ${
         isIntersecting
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-10"
