@@ -9,7 +9,7 @@ export default function Photography() {
   useEffect(() => {
     const feed = new Instafeed({
       accessToken: 'IGAAZAa77nYWBFBZAFBOYVFvN3B2bThyWVg3Nm9MRVh3QzRVSFY4VXV5NEFSRjJBc3VSay1BQ3lKTFhhOGNNbG54NHhMTjJKLVdFa004TW04MnJQVUdyczJ6R0J3WW5DSWxJb094blZAvT004a3QxSEZArREZAVU25QSkV0QkNyY3dodwZDZD',
-      limit: 12,
+      limit: 20,
       template: '<a href="{{link}}" target="_blank"><img title="{{caption}}" src="{{image}}" /></a>',
       after: function() {
         // Add any code to run after images are added here
@@ -19,7 +19,7 @@ export default function Photography() {
   }, []);
 
   return (
-    <div className="min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="min-h-screen p-8 sm:p-20 font-abril-sans">
       <header className="mb-12">
         <Link href="/" className="text-2xl font-bold hover:text-stone-500 transition-colors duration-200">
           {tempHeader()}
@@ -28,7 +28,7 @@ export default function Photography() {
       </header>
       <main>
         <p className="mb-9">The perspective towards life keeps changing</p>
-        <div id="instafeed" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+        <div id="instafeed" className="container mb-4 bg-transparent p-4 rounded-lg shadow-inner grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
         <p className="mt-8 mb-4">Follow me on Instagram for more:</p>
         <a
           href="https://www.instagram.com/vhs.dawn/"
