@@ -74,6 +74,11 @@ body {
   object-fit: cover;
   border-radius: 0.5rem;
 }
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
 
 .experience-container {
   margin-bottom: 40px;
