@@ -20,10 +20,10 @@ const projectsData = [
 ];
 
 const ProjectItem = ({ title, type, description, link }) => (
-  <div className="container shadow-md rounded-lg p-6 mb-4 hover:shadow-bg hover:bg-gray-800 transition-all duration-200">
+<div className="project-card bg-neutral-600 border border-gray-700 hover:bg-slate-800 p-4 rounded-lg hover:shadow-lg hover:shadow-blue-800 transition duration-300">
     <h3 className="text-xl font-semibold mb-2">{title}</h3>
     <p className="text-sm font-semibold text-gray-400 mb-2">{type}</p>
-    <p className="text-white text-700 mb-4">{description}</p>
+    <p className="text-white text-700 mb-4 ">{description}</p>
     <Link href={link} target="_blank" rel="noopener noreferrer" className="text-dark-500 hover:underline">
       Learn More
     </Link>
