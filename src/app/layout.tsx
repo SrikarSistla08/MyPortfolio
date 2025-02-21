@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Advent_Pro } from "next/font/google";
+import { Geist, Geist_Mono, Advent_Pro, Italiana } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +10,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const italiana = Italiana({
+  weight: "400",
+  subsets: ['latin'],
+  variable: '--font-italiana',
 });
 
 const adventPro = Advent_Pro({
@@ -30,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${adventPro.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${adventPro.variable} ${italiana.variable} antialiased`}
       >
         {children}
       </body>

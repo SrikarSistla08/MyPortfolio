@@ -24,7 +24,7 @@ function Header() {
         <header className=" z-auto bg-auto shadow-md">
             <div className="text-center  mx-auto px-4">
                 <div className="flex justify-between items-center py-4">
-                    <h1 className=" text-4xl md:text-7xl font-bold old-standard-tt-regular-italic hover:text-stone-500 transition-colors duration-200">
+                    <h1 className=" text-4xl md:text-7xl font-bold font-italiana hover:text-stone-500 transition-colors duration-200">
                         Srikar Sistla
                     </h1>
 
@@ -42,7 +42,7 @@ function Header() {
 
                     {/* Navigation menu for desktop */}
                     <nav className="hidden md:block">
-                        <ul className="flex space-x-4">
+                        <ul className="flex space-x-4 font-italiana">
                             <NavItem href="#about">About</NavItem>
                             <NavItem href="#experience">Experience</NavItem>
                             <NavItem href="#skills">Skills</NavItem>

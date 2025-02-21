@@ -38,12 +38,12 @@ const Projects = () => {
     : projectsData.filter(item => item.type === filter);
 
     return (
-        <main className="max-h-screen p-8 sm:p-20">
+        <main className="max-h-screen p-8 sm:p-20 tracking-wide font-italiana">
             <Link href="/" className="text-2xl font-bold hover:text-stone-500 transition-colors duration-200">
               {tempHeader()}
             </Link>
             <div className="experience-container justify-between items-center grid justify-center items-center flex-col w-full h-full p-4">
-              <h2 className="text-5xl font-bold mb-8 text-white text-left font-bold old-standard-tt-regular-italic hover:animate-pulse duration-1000">Projects </h2>
+              <h2 className="text-5xl font-bold mb-8 text-white text-left font-bold hover:animate-pulse duration-1000">Projects </h2>
                 <div className="container mb-4 bg-transparent p-4 rounded-lg shadow-inner">
                     <label htmlFor="filter" className="bg-transparent mr-4 text-white font-semibold">Filter by:</label>
                     <select

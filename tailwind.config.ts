@@ -1,4 +1,3 @@
-import { Advent_Pro } from "next/font/google";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +17,7 @@ export default {
         geist: ['Geist', 'sans-serif'],
         honk: ['var(--font-honk)'],
         Advent_Pro: ['var(--font-advent-pro)'],
+        italiana: ['Italiana', 'serif'],
       },
       colors: {
         primary: '#0077B6', // New primary color

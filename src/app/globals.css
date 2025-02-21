@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.font-italiana {
+  font-family: 'Italiana', serif;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,6 +23,11 @@ body {
   background: var(--background);
   font-family: Helvetica, sans-serif, 'oswald', 'ramaraja';
 }
+
+.font-italiana {
+  font-family: 'Italiana', serif;
+}
+
 
 .old-standard-tt-regular {
   font-family: "Old Standard TT", serif;

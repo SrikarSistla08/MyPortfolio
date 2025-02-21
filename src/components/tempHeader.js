@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 function Header() {
     return (
-        <header className="mb-12 flex p-4 justify-left items-center">
+        <header className="mb-12 flex p-4 justify-left items-center font-italiana tracking-wide">
             <Image
             className="rounded-full mr-4"
                 vertical-align="middle"
@@ -14,7 +14,7 @@ function Header() {
                 border-radius="50%"
                 priority
             />
-            <h1 className="text-5xl font-bold old-standard-tt-regular-italic hover:text-stone-500 transition-colors duration-200">Srikar Sistla</h1>
+            <h1 className="text-xl font-bold hover:text-stone-500 transition-colors duration-200">Srikar Sistla</h1>
             <nav>
                 <ul className="flex">
                 </ul>

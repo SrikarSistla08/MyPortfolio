@@ -19,7 +19,7 @@ export default function Photography() {
   }, []);
 
   return (
-    <div className="min-h-screen p-8 sm:p-20 font-old-standard-tt animate-fadeIn">
+    <div className="min-h-screen p-8 sm:p-20 font-italiana tracking-wide animate-fadeIn">
       <header className="mb-12">
         <Link href="/" className="text-2xl sm:text-3xl font-bold hover:text-stone-500 transition-colors duration-200 abril-fatface-regular">
           {tempHeader()}
@@ -31,12 +31,12 @@ export default function Photography() {
         <div id="instafeed" className="columns-2 gap-4 sm:columns-3 sm:gap-8">
           {/* Instagram images will be added dynamically */}
         </div>
-        <p className="mt-8 mb-4 text-lg sm:text-xl old-standard-tt-regular animate-slide-in-right">Follow me on Instagram for more:</p>
+        <p className="mt-8 mb-4 text-lg sm:text-xl font-italiana tracking-wide animate-slide-in-right">Follow me on Instagram for more:</p>
         <a
           href="https://www.instagram.com/vhs.dawn/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-6 rounded-lg hover:from-purple-500 hover:to-pink-600 transition-all duration-300 transform hover:scale-110 hover:shadow-lg abril-fatface-regular"
+          className="inline-block bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-6 rounded-lg hover:from-purple-500 hover:to-pink-600 transition-all duration-300 transform hover:scale-110 hover:shadow-lg font-italiana tracking-wide"
         >
           @vhs.dawn on Instagram
         </a>
