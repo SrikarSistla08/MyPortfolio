@@ -101,3 +101,18 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.back-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.back-to-top-button button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

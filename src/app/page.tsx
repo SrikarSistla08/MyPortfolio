@@ -16,8 +16,15 @@ const Hero = () => (
     initial={{ opacity: 0, y: 100 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 1, ease: "easeInOut" }}
-    className="flex text-6xl font-['advent_pro'] flex-col items-center justify-center h-screen text-center">
+    className="flex text-6xl font-['advent_pro'] flex-col justify-center h-screen text-center">
       Welcome to My Portfolio!
+      <motion.p
+       initial={{ y: -30, opacity: 0 }}
+       animate={{ y: 20, opacity: 3 }}
+       transition={{ duration: 1.50, repeat: Infinity,}}
+       className="text-sm font-medium hover:text-stone-200 transition duration-200 mt-10">
+        <Link href="#header">Scroll Down or Click me to Explore</Link>
+       </motion.p>
     </motion.div>
 );
 
