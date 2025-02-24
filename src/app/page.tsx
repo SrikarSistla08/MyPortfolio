@@ -53,7 +53,7 @@ const Hero = () => {
           backgroundPosition: "center",
           backgroundBlendMode: "multiply",
           backgroundRepeat: "no-repeat",
-          opacity: 0.5,
+          opacity: 0.8,
           y: backgroundY
         }}
       />
