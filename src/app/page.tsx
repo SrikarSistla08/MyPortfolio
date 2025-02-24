@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import Header from "../components/header";
 import About from "../components/about";
@@ -9,10 +9,18 @@ import Education from "../components/education";
 import Contact from "../components/contact";
 import Footer from "@/components/footer";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect } from "react";
 
 const Hero = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 2], ["0%", "30%"]);
+
   useEffect(() => {
     // Smooth scroll functionality
     const handleClick = (e: MouseEvent) => {
@@ -20,7 +28,8 @@ const Hero = () => {
       const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
       if (href) {
         document.querySelector(href)?.scrollIntoView({
-          behavior: 'smooth'
+          behavior: 'smooth',
+          block: 'start',
         });
       }
     };
@@ -34,22 +43,39 @@ const Hero = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeInOut" }}
-      className="flex text-6xl font-['advent_pro'] flex-col justify-center h-screen text-center">
+    <div ref={ref} className="relative h-screen overflow-hidden">
+      <motion.div
+        className="absolute inset-0 z-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/bc.jpg')",
+          backgroundSize: "fill(0, 0, 0, 0)",
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center",
+          backgroundBlendMode: "multiply",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.8,
+          y: backgroundY
+        }}
+      />
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+        className="relative z-10 flex text-6xl font-['advent_pro'] flex-col justify-center h-full text-center text-white"
+      >
         Welcome to My Portfolio!
         <motion.p
-         initial={{ y: -30, opacity: 0 }}
+         initial={{ y: -10, opacity: 2}}
          animate={{ y: 20, opacity: 3 }}
          transition={{ duration: 1.50, repeat: Infinity,}}
-         className="text-sm font-medium hover:text-stone-200 transition duration-200 mt-10">
+         className="text-sm font-medium hover:transition duration-500 mt-8">
           <Link href="#header">Scroll Down or Click me to Explore</Link>
          </motion.p>
       </motion.div>
+    </div>
   );
 };
+
 
 
 const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => {
