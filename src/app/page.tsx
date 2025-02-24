@@ -10,23 +10,46 @@ import Contact from "../components/contact";
 import Footer from "@/components/footer";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
-const Hero = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 100 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1, ease: "easeInOut" }}
-    className="flex text-6xl font-['advent_pro'] flex-col justify-center h-screen text-center">
-      Welcome to My Portfolio!
-      <motion.p
-       initial={{ y: -30, opacity: 0 }}
-       animate={{ y: 20, opacity: 3 }}
-       transition={{ duration: 1.50, repeat: Infinity,}}
-       className="text-sm font-medium hover:text-stone-200 transition duration-200 mt-10">
-        <Link href="#header">Scroll Down or Click me to Explore</Link>
-       </motion.p>
-    </motion.div>
-);
+const Hero = () => {
+  useEffect(() => {
+    // Smooth scroll functionality
+    const handleClick = (e: MouseEvent) => {
+      e.preventDefault();
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+      if (href) {
+        document.querySelector(href)?.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    const link = document.querySelector('a[href^="#"]');
+    link?.addEventListener('click', handleClick as EventListener);
+
+    return () => {
+      link?.removeEventListener('click', handleClick as EventListener);
+    };
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      className="flex text-6xl font-['advent_pro'] flex-col justify-center h-screen text-center">
+        Welcome to My Portfolio!
+        <motion.p
+         initial={{ y: -30, opacity: 0 }}
+         animate={{ y: 20, opacity: 3 }}
+         transition={{ duration: 1.50, repeat: Infinity,}}
+         className="text-sm font-medium hover:text-stone-200 transition duration-200 mt-10">
+          <Link href="#header">Scroll Down or Click me to Explore</Link>
+         </motion.p>
+      </motion.div>
+  );
+};
 
 
 const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => {
