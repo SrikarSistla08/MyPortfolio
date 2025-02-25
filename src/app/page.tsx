@@ -116,6 +116,21 @@ const Hero = () => {
   );
 };
 
+const BackToTopButton = () => {
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      className="fixed bottom-4 right-4 p-3 bg-slate-600 text-white rounded-full shadow-lg hover:bg-zinc-700 transition duration-300"
+      aria-label="Back to top"
+    >
+      Back to Top
+    </button>
+  );
+};
 
 
 const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => {
@@ -142,6 +157,7 @@ export default function Home() {
   return (
     <AnimatedSection>
       <div className="min-h-screen flex flex-col">
+        <BackToTopButton />
         <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 gap-16 sm:p-20">
           <AnimatedSection>
           <Hero />
