@@ -60,8 +60,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeInOut" }}
-          className="relative z-10 flex text-6xl font-['advent_pro'] flex-col justify-center h-full text-center text-white"
-        >
+          className="relative z-10 flex text-6xl font-['advent_pro'] flex-col justify-center h-full text-center"
+
+>
           Welcome to My Portfolio!
           <motion.p
           initial={{ y: -10, opacity: 2}}
@@ -82,7 +83,7 @@ const Hero = () => {
             backgroundPosition: "center",
             backgroundBlendMode: "multiply",
             backgroundRepeat: "repeat",
-            opacity: 0.8,
+            opacity: 0.7,
             y: backgroundY
           }}
         />
@@ -90,14 +91,14 @@ const Hero = () => {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeInOut" }}
-          className="relative z-10 flex text-6xl font-italiana flex-col justify-center h-full text-center text-white"
+          className="relative z-10 flex text-6xl font-italiana flex-col justify-center h-full text-center"
         >
           THIS IS<br></br>Srikar Sistla
           <motion.p
           initial={{ y: -10, opacity: 2}}
           animate={{ y: 20, opacity: 3 }}
           transition={{ duration: 1.50,}}
-          className="text-2xl font-italiana hover:transition duration-500 mt-8">
+          className="text-2xl font-honk hover:transition duration-500 mt-8">
             Welcome to my space where I showcase myself! <br></br>but moreover, a place where you can experience my tangled perspective towards life.
           </motion.p>
 
