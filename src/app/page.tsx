@@ -19,7 +19,7 @@ const Hero = () => {
     offset: ["start start", "end start"]
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 2], ["0%", "30%"]);
+  const backgroundY = useTransform(scrollYProgress, [0, 2], ["0%", "50%"]);
 
   useEffect(() => {
     // Smooth scroll functionality
@@ -43,36 +43,78 @@ const Hero = () => {
   }, []);
 
   return (
-    <div ref={ref} className="relative h-screen overflow-hidden">
-      <motion.div
-        className="absolute inset-0 z-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/bc.jpg')",
-          backgroundSize: "fill(0, 0, 0, 0)",
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center",
-          backgroundBlendMode: "multiply",
-          backgroundRepeat: "no-repeat",
-          opacity: 0.8,
-          y: backgroundY
-        }}
-      />
-      <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        className="relative z-10 flex text-6xl font-['advent_pro'] flex-col justify-center h-full text-center text-white"
-      >
-        Welcome to My Portfolio!
-        <motion.p
-         initial={{ y: -10, opacity: 2}}
-         animate={{ y: 20, opacity: 3 }}
-         transition={{ duration: 1.50, repeat: Infinity,}}
-         className="text-sm font-medium hover:transition duration-500 mt-8">
-          <Link href="#header">Scroll Down or Click me to Explore</Link>
-         </motion.p>
-      </motion.div>
-    </div>
+    <section>
+      <div ref={ref} className="relative h-screen overflow-hidden">
+        <motion.div id="ths"
+          className="max-h-screen flex justify-center items-center"
+          style={{
+            backgroundImage: "url('/bc.jpg')",
+            backgroundFill: "fill(0, 0, 0, 0)",
+            backgroundAttachment: "fixed",
+            backgroundPosition: "center",
+            backgroundBlendMode: "multiply",
+            backgroundRepeat: "no-repeat",
+            backgroundheight: "100vh",
+            opacity: 0.8,
+            y: backgroundY
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          className="relative z-10 flex text-6xl font-['advent_pro'] flex-col justify-center h-full text-center text-white"
+        >
+          Welcome to My Portfolio!
+          <motion.p
+          initial={{ y: -10, opacity: 2}}
+          animate={{ y: 20, opacity: 3 }}
+          transition={{ duration: 1.50, repeat: Infinity,}}
+          className="text-sm font-medium hover:transition duration-500 mt-8">
+            <Link href="#ths2">Scroll Down or Click me to Explore</Link>
+          </motion.p>
+        </motion.div>
+      </div>
+      <div></div>
+      <div ref={ref} className="relative h-screen overflow-hidden">
+      <motion.div id="ths2"
+          className="max-h-screen absolute inset-0 z-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/bc.JPG')",
+            backgroundAttachment: "auto",
+            backgroundPosition: "center",
+            backgroundBlendMode: "multiply",
+            backgroundRepeat: "repeat",
+            opacity: 0.8,
+            y: backgroundY
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          className="relative z-10 flex text-6xl font-italiana flex-col justify-center h-full text-center text-white"
+        >
+          THIS IS<br></br>Srikar Sistla
+          <motion.p
+          initial={{ y: -10, opacity: 2}}
+          animate={{ y: 20, opacity: 3 }}
+          transition={{ duration: 1.50,}}
+          className="text-2xl font-italiana hover:transition duration-500 mt-8">
+            Welcome to my space where I showcase myself! <br></br>but moreover, a place where you can experience my tangled perspective towards life.
+          </motion.p>
+
+          <motion.p
+          initial={{ y: -10, opacity: 2}}
+          animate={{ y: 20, opacity: 3 }}
+          transition={{ duration: 1.50, repeat: Infinity,}}
+          className="text-sm font-medium hover:transition duration-500 mt-20">
+            <Link href="#header">Scroll Down or Click me to Explore</Link>
+          </motion.p>
+          <div></div>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 
@@ -103,7 +145,7 @@ export default function Home() {
     <AnimatedSection>
       <div className="min-h-screen flex flex-col">
         <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 gap-16 sm:p-20">
-          <AnimatedSection>
+          <AnimatedSection className="row-start-1">
           <Hero />
             <Header />
           </AnimatedSection>
