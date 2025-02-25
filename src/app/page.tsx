@@ -29,7 +29,6 @@ const Hero = () => {
       if (href) {
         document.querySelector(href)?.scrollIntoView({
           behavior: 'smooth',
-          block: 'start',
         });
       }
     };
@@ -49,12 +48,10 @@ const Hero = () => {
           className="max-h-screen flex justify-center items-center"
           style={{
             backgroundImage: "url('/bc.jpg')",
-            backgroundFill: "fill(0, 0, 0, 0)",
             backgroundAttachment: "fixed",
             backgroundPosition: "center",
             backgroundBlendMode: "multiply",
             backgroundRepeat: "no-repeat",
-            backgroundheight: "100vh",
             opacity: 0.8,
             y: backgroundY
           }}
@@ -107,8 +104,8 @@ const Hero = () => {
           <motion.p
           initial={{ y: -10, opacity: 2}}
           animate={{ y: 20, opacity: 3 }}
-          transition={{ duration: 1.50, repeat: Infinity,}}
-          className="text-sm font-medium hover:transition duration-500 mt-20">
+          transition={{ duration: 1.50,}}
+          className="text-sm font-medium hover:text-black hover:bg-500 transition-all duration-500 mt-20">
             <Link href="#header">Scroll Down or Click me to Explore</Link>
           </motion.p>
           <div></div>
@@ -145,8 +142,10 @@ export default function Home() {
     <AnimatedSection>
       <div className="min-h-screen flex flex-col">
         <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 gap-16 sm:p-20">
-          <AnimatedSection className="row-start-1">
+          <AnimatedSection>
           <Hero />
+          </AnimatedSection>
+          <AnimatedSection className="flex flex-col gap-16 overflow-y-auto mt-10">
             <Header />
           </AnimatedSection>
           <main className="flex flex-col gap-16 overflow-y-auto">
