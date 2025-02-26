@@ -21,7 +21,7 @@ export default function Photography() {
   return (
     <div className="min-h-screen p-8 sm:p-20 font-['rajdhani'] tracking-wide animate-fadeIn">
       <header className="mb-12">
-        <Link href="/" className="text-2xl sm:text-3xl font-bold hover:text-stone-500 transition-colors duration-200 abril-fatface-regular">
+        <Link href="/" className="text-2xl sm:text-3xl font-bold hover:text-stone-500 transition-colors duration-200">
           {tempHeader()}
         </Link>
         <h1 className="text-4xl sm:text-5xl font-bold mt-4 animate-fadeIn duration-100">My Photography</h1>
