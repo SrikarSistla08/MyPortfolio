@@ -24,10 +24,99 @@ body {
   font-family: Helvetica, sans-serif, 'oswald', 'ramaraja';
 }
 
+.rajdhani-light {
+  font-family: "Rajdhani", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.rajdhani-regular {
+  font-family: "Rajdhani", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rajdhani-medium {
+  font-family: "Rajdhani", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.rajdhani-semibold {
+  font-family: "Rajdhani", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.rajdhani-bold {
+  font-family: "Rajdhani", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.montserrat-regular {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .font-italiana {
   font-family: 'Italiana', serif;
 }
 
+.font-ramaraja {
+  font-family: 'Ramaraja', serif;
+}
+
+.bai-jamboree-regular {
+  font-family: "Bai Jamjuree", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bai-jamjuree-medium {
+  font-family: "Bai Jamjuree", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.bai-jamjuree-semibold {
+  font-family: "Bai Jamjuree", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.bai-jamjuree-bold {
+  font-family: "Bai Jamjuree", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.bai-jamjuree-regular-italic {
+  font-family: "Bai Jamjuree", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.bai-jamjuree-medium-italic {
+  font-family: "Bai Jamjuree", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.bai-jamjuree-semibold-italic {
+  font-family: "Bai Jamjuree", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.font-advent-pro-text {
+  font-family: 'Bebas Neue', serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .old-standard-tt-regular {
   font-family: "Old Standard TT", serif;
@@ -83,6 +172,7 @@ body {
   object-fit: cover;
   border-radius: 0.5rem;
 }
+
 .parallax {
   background-attachment: fixed;
   background-size: cover;
@@ -100,12 +190,6 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-.back-to-top-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
 }
 
 .back-to-top-button button {

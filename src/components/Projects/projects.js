@@ -38,7 +38,7 @@ const Projects = () => {
     : projectsData.filter(item => item.type === filter);
 
     return (
-        <main className="max-h-screen p-8 sm:p-20 tracking-wide font-italiana">
+        <main className="max-h-screen p-8 sm:p-20 tracking-wide font-['rajdhani']">
             <Link href="/" className="text-2xl font-bold hover:text-stone-500 transition-colors duration-200">
               {tempHeader()}
             </Link>

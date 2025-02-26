@@ -34,7 +34,7 @@ function Header() {
             <div className="text-center mx-auto px-4">
                 <div className="flex justify-between items-center py-4">
                     <motion.h1 
-                        className="text-4xl md:text-7xl font-bold font-italiana hover:text-stone-500 transition-colors duration-200"
+                        className="text-4xl md:text-7xl font-light hover:text-stone-500 transition-colors duration-200"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
@@ -58,7 +58,7 @@ function Header() {
 
                     {/* Navigation menu for desktop */}
                     <nav className="hidden md:block">
-                        <ul className="flex space-x-4 font-italiana">
+                        <ul className="flex space-x-4">
                             <NavItem href="#about" onClick={(e) => scrollToElement(e, 'about')}>About</NavItem>
                             <NavItem href="#experience" onClick={(e) => scrollToElement(e, 'experience')}>Experience</NavItem>
                             <NavItem href="#skills" onClick={(e) => scrollToElement(e, 'skills')}>Skills</NavItem>

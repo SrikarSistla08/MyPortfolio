@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 function Header() {
     return (
-        <header className="mb-12 flex p-4 justify-left items-center font-italiana tracking-wide">
+        <header className="mb-12 flex p-4 justify-left items-center tracking-wide">
             <Image
             className="rounded-full mr-4"
                 vertical-align="middle"
