@@ -209,8 +209,8 @@ export default function Home() {
             </AnimatedSection>
             <Contact />
           </main>
-          <Footer />
         </div>
+        <Footer />
       </div>
     </AnimatedSection>
   );
