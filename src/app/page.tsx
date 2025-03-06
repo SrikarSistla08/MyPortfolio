@@ -6,7 +6,7 @@ import About from "../components/about";
 import Experience from "../components/experience";
 import Skills from "../components/skills";
 import Education from "../components/education";
-import Contact from "../components/contact";
+// import Contact from "../components/contact";
 import Footer from "@/components/footer";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -162,10 +162,10 @@ export default function Home() {
           <Hero />
           </AnimatedSection>
         <div className="grid min-h-screen gap-16 p-10">
-          <AnimatedSection className="flex flex-col gap-16 overflow-y-auto mt-10">
+          <AnimatedSection className="fixed-top flex flex-col gap-16 overflow-y-auto mt-10">
             <Header />
           </AnimatedSection>
-          <main className="flex flex-col gap-16 overflow-y-auto">
+          <main className="flex flex-col gap-16">
             <AnimatedSection className="flex flex-col gap-16 overflow-y-auto">
               <About />
               <div className="mt-3">
@@ -207,7 +207,6 @@ export default function Home() {
                 </div>
               </section>
             </AnimatedSection>
-            <Contact />
           </main>
         </div>
         <Footer />
