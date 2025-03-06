@@ -4,15 +4,15 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="fixed-bottom w-full flex-col bg-slate-900 text-white p-20 text-center text-sm flex items-center justify-center gap-2 tracking-widest font-['rajdhani']">
+    <footer className="flex-col bg-slate-900 text-white p-20 text-center text-sm flex items-center justify-center gap-2 tracking-widest font-['rajdhani']">
         <section id="contact" className="flex flex-col items-left gap-8 font-semibold">
           <div className="flex items-center gap-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
             </svg>
-            <h2 className="text-3xl font-bold hover:text-stone-400 transition duration-200">Lets Connect!</h2>
+            <h2 className="text-3xl font-bold hover:text-stone-400 transition duration-200 flex-col items-left">Lets Connect!</h2>
           </div>
-          <p className="text-lg text-light">
+          <p className="text-lg text-light flex-col text-left gap-4">
             Feel free to reach out to me at <a href="mailto:srikarsistla710@gmail.com" className="text-blue-500 hover:underline">srikarsistla710@gmail.com</a> or call me at 443.636.7777
           </p>
           <div className="flex items-center gap-6">
