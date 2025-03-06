@@ -44,7 +44,7 @@ const Hero = () => {
   return (
     <section>
       <div ref={ref} className="relative h-screen overflow-hidden">
-        <motion.div id="ths"
+        {/* <motion.div id="ths"
           className="max-h-screen flex justify-center items-center"
           style={{
             backgroundImage: "url('/bc.jpg')",
@@ -74,8 +74,8 @@ const Hero = () => {
         </motion.div>
       </div>
       <div></div>
-      <div ref={ref} className="relative h-screen overflow-hidden">
-      <motion.div id="ths2"
+      <div ref={ref} className="relative h-screen overflow-hidden"> */}
+      <motion.div
           className="max-h-screen absolute inset-0 z-0 bg-cover bg-center mp-overlay"
           style={{
             backgroundImage: "url('/bc.JPG')",
@@ -91,15 +91,15 @@ const Hero = () => {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeInOut" }}
-          className="relative z-10 flex text-9xl flex-col justify-center h-full text-center md:p-10"
+          className="relative z-10 text-black flex text-9xl flex-col justify-center h-full text-center md:p-10"
         >
-          This is<br></br>Srikar Sistla
+          Srikar Sistla
           <motion.p
           initial={{ y: -10, opacity: 2}}
           animate={{ y: 20, opacity: 3 }}
           transition={{ duration: 1.50,}}
           className="text-2xl font-honk hover:transition duration-500 mt-8">
-            Welcome to my space where I showcase myself! <br></br>but moreover, a place where you can experience my tangled perspective towards life.
+            Aspiring Web Developer and Data Analyst 
           </motion.p>
 
           <motion.p
@@ -162,11 +162,13 @@ export default function Home() {
           <Hero />
           </AnimatedSection>
         <div className="grid min-h-screen gap-16 p-10">
-          <AnimatedSection className="fixed-top flex flex-col gap-16 overflow-y-auto mt-10">
+          <div id="header" className="max-h-screen flex flex-col gap-8 mt-10">
+          <AnimatedSection>
             <Header />
           </AnimatedSection>
+          </div>
           <main className="flex flex-col gap-16">
-            <AnimatedSection className="flex flex-col gap-16 overflow-y-auto">
+            <AnimatedSection className="min-h-screen gap-16">
               <About />
               <div className="mt-3">
                 <a
