@@ -6,7 +6,7 @@ import About from "../components/about";
 import Experience from "../components/experience";
 import Skills from "../components/skills";
 import Education from "../components/education";
-// import Contact from "../components/contact";
+import ProjectsShowcase from "../components/ProjectsShowcase";
 import Footer from "@/components/footer";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -167,14 +167,14 @@ export default function Home() {
             <Header />
           </AnimatedSection>
           </div>
-          <main className="flex flex-col gap-16">
-            <AnimatedSection className="min-h-screen gap-16">
+          <main className="flex flex-col gap-10">
+            <AnimatedSection className="min-h-screen gap-2">
               <About />
-              <div className="mt-3">
+              <div className="mt-4">
                 <a
                   href="Resume.pdf"
                   download
-                  className="inline-block bg-gray-600 text-white font-semibold py-2 px-4 mt-2 rounded-lg hover:bg-slate-700 transition-colors duration-300 tracking-wide"
+                  className="inline-block bg-blue-900 text-white font-semibold py-2 px-4 mt-2 rounded-lg hover:bg-slate-700 transition-colors duration-300 tracking-wide"
                 >
                   Download Resume
                 </a>
@@ -182,6 +182,9 @@ export default function Home() {
             </AnimatedSection>
             <AnimatedSection>
               <Experience />
+            </AnimatedSection>
+            <AnimatedSection>
+              <ProjectsShowcase />
             </AnimatedSection>
             <AnimatedSection>
               <Skills />

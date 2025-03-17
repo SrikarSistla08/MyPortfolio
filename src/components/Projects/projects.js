@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import tempHeader from "../tempHeader";
 
-const projectsData = [
+export const projectsData = [
   {
     title: "Applications of Big Data in Social Media",
     type: "Project",
@@ -18,6 +18,7 @@ const projectsData = [
   },
   // Add more projects, certifications, and awards here
 ];
+
 
 const ProjectItem = ({ title, type, description, link }) => (
 <div className="project-card bg-neutral-600 border border-gray-700 hover:bg-slate-800 p-4 rounded-lg hover:shadow-lg hover:shadow-blue-800 transition duration-300">
