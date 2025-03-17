@@ -116,7 +116,7 @@ const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string;
     triggerOnce: true,
   });
 
-  const intersectionRef = rawIntersectionRef || { current: null };
+  const intersectionRef = typeof rawIntersectionRef === "object" ? rawIntersectionRef : { current: null };
 
   return (
     <motion.section
