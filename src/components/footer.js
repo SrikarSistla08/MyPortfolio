@@ -4,7 +4,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="flex-col bg-slate-900 text-white p-20 text-center text-sm flex items-center justify-center gap-2 tracking-widest font-['rajdhani']">
+    <footer className="flex-col bg-slate-950 text-white p-20 text-center text-sm flex items-center justify-center gap-2 tracking-widest font-['rajdhani']">
         <section id="contact" className="flex flex-col items-left gap-8 font-semibold">
           <div className="flex items-center gap-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

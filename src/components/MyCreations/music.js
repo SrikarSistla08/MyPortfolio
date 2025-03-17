@@ -4,7 +4,7 @@ import tempHeader from '../tempHeader';
 
 export default function Music() {
   return (
-    <div className="min-h-screen p-8 sm:p-20 font-['rajdhani'] tracking-wide">
+    <div className="min-h-screen p-8 sm:p-20 font-['rajdhani'] tracking-wide bg-gradient-to-br from-slate-900 to-black">
       <header className="mb-12 experience-container">
         <Link href="/" className="text-2xl font-bold hover:text-stone-500 transition-colors duration-200">
           {tempHeader()}
