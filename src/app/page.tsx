@@ -110,15 +110,18 @@ const BackToTopButton = () => {
   );
 };
 
-const AnimatedSection = ({ children, className = "" }) => {
-  const [ref, isIntersecting] = useIntersectionObserver({
+const AnimatedSection: React.FC<{ children: React.ReactNode; className?: string; id?: string }> = ({ children, className = "", id }) => {
+  const [rawIntersectionRef, isIntersecting] = useIntersectionObserver({
     threshold: 0.1,
     triggerOnce: true,
   });
 
+  const intersectionRef = rawIntersectionRef || { current: null };
+
   return (
     <motion.section
-      ref={ref}
+      id={id}
+      ref={intersectionRef}
       initial={{ opacity: 0, y: 50 }}
       animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, ease: "easeOut" }}
