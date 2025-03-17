@@ -138,56 +138,59 @@ export default function Home() {
       <BackToTopButton />
       <Hero />
       <div className="mx-auto px-8 py-16">
-        <AnimatedSection id="header" className="mb-24">
+        <AnimatedSection id="header" className="mb-16">
           <Header />
         </AnimatedSection>
         <div className="mx-auto px-8 py-16 ">
-        <main className="space-y-24">
-          <AnimatedSection>
-            <About />
-            <div className="mt-8">
-              <a
-                href="Resume.pdf"
-                download
-                className="inline-block bg-slate-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 tracking-wide"
-              >
-                Download Resume
-              </a>
-            </div>
-          </AnimatedSection>
-          <AnimatedSection>
-            <Experience />
-          </AnimatedSection>
-          <AnimatedSection>
-            <ProjectsShowcase />
-          </AnimatedSection>
-          <AnimatedSection>
-            <Skills />
-          </AnimatedSection>
-          <AnimatedSection>
-            <Education />
-          </AnimatedSection>
-          <AnimatedSection>
-            <section id="creations" className="space-y-8">
-              <h2 className="text-4xl font-bold mb-8">My Creations</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <Link href="/photography" className="group">
-                  <div className="bg-purple-600 rounded-lg p-6 transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
-                    <h3 className="text-2xl font-semibold mb-4 text-white">Photography</h3>
-                    <p className="text-purple-100">Explore my visual journey through Instagram</p>
-                  </div>
-                </Link>
-                <Link href="/music" className="group">
-                  <div className="bg-green-600 rounded-lg p-6 transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
-                    <h3 className="text-2xl font-semibold mb-4 text-white">Music</h3>
-                    <p className="text-green-100">Listen to my musical creations on Spotify</p>
-                  </div>
-                </Link>
+          <main className="space-y-24">
+            <AnimatedSection>
+              <About />
+              <div className="mt-8">
+                <a
+                  href="Resume.pdf"
+                  download
+                  className="inline-block bg-slate-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 tracking-wide"
+                >
+                  Download Resume
+                </a>
               </div>
-            </section>
-          </AnimatedSection>
-        </main>
+            </AnimatedSection>
+            <AnimatedSection>
+              <Experience />
+            </AnimatedSection>
+            <AnimatedSection>
+              <ProjectsShowcase />
+            </AnimatedSection>
+            {/* <AnimatedSection>
+              <Skills />
+            </AnimatedSection> */}
+            <AnimatedSection>
+              <Education />
+            </AnimatedSection>
+          </main>
         </div>
+        <AnimatedSection className="mx-auto px-8 py-16">
+          <Skills />
+        </AnimatedSection>
+        <AnimatedSection className="mx-auto px-8 py-16">
+              <section id="creations" className="space-y-8">
+                <h2 className="text-4xl font-bold mb-8">My Creations</h2>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <Link href="/photography" className="group">
+                    <div className="bg-purple-600 rounded-lg p-6 transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
+                      <h3 className="text-2xl font-semibold mb-4 text-white">Photography</h3>
+                      <p className="text-purple-100">Explore my visual journey through Instagram</p>
+                    </div>
+                  </Link>
+                  <Link href="/music" className="group">
+                    <div className="bg-green-600 rounded-lg p-6 transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
+                      <h3 className="text-2xl font-semibold mb-4 text-white">Music</h3>
+                      <p className="text-green-100">Listen to my musical creations on Spotify</p>
+                    </div>
+                  </Link>
+                </div>
+              </section>
+            </AnimatedSection>
       </div>
       <Footer />
     </div>
