@@ -42,6 +42,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  icons: "/S2.svg",
   title: "Srikar Sistla",
   description: "This is my portfolio and my space to see fun stuff!!",
 };

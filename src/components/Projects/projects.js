@@ -29,7 +29,7 @@ const ProjectItem = ({ title, type, description, link, tags }) => (
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -10 }}
     transition={{ duration: 0.5 }}
-    className="project-card bg-neutral-800 border border-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl hover:shadow-blue-800/30 transition duration-300"
+    className="project-card bg-neutral-800 border border-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-blue-800/30 transition duration-300"
   >
     <h3 className="text-2xl font-semibold mb-3 text-white">{title}</h3>
     <p className="text-sm font-semibold text-blue-400 mb-3">{type}</p>

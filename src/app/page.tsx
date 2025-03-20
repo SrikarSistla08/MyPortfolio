@@ -149,7 +149,7 @@ export default function Home() {
                 <a
                   href="Resume.pdf"
                   download
-                  className="inline-block bg-slate-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 tracking-wide"
+                  className="inline-block bg-slate-900 text-white font-semibold py-3 px-6 rounded-2xl hover:bg-blue-700 transition-colors duration-300 tracking-wide"
                 >
                   Download Resume
                 </a>
@@ -177,13 +177,13 @@ export default function Home() {
                 <h2 className="text-4xl font-bold mb-8">My Creations</h2>
                 <div className="grid md:grid-cols-2 gap-8">
                   <Link href="/photography" className="group">
-                    <div className="bg-purple-600 rounded-lg p-6 transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
+                    <div className="bg-purple-900 rounded-2xl p-6 transition-all duration-300 transform group-hover:shadow-xl">
                       <h3 className="text-2xl font-semibold mb-4 text-white">Photography</h3>
                       <p className="text-purple-100">Explore my visual journey through Instagram</p>
                     </div>
                   </Link>
                   <Link href="/music" className="group">
-                    <div className="bg-green-600 rounded-lg p-6 transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
+                    <div className="bg-green-600 rounded-2xl p-6 transition-all duration-300 transform group-hover:shadow-xl">
                       <h3 className="text-2xl font-semibold mb-4 text-white">Music</h3>
                       <p className="text-green-100">Listen to my musical creations on Spotify</p>
                     </div>
