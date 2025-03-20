@@ -12,7 +12,7 @@ function Experience() {
           <div className="space-y-8 text lg">
             <div>
               <h3 className="text-xl font-semibold">Software Engineer Intern | TANTVSTUDIOS</h3>
-              <p className="text-sm text-gray-600">11/2024-Present</p>
+              <p className="text-sm text-gray-600"><strong className="text-blue-400">11/2024-Present</strong></p>
               <ul className="list-disc list-inside mt-2">
                 <li>Developed and optimized the SYNDEX AI platform using Next.js and React.js</li>
                 <li>Integrated REST APIs for dynamic content</li>
@@ -22,7 +22,7 @@ function Experience() {
 
             <div>
               <h3 className="text-xl font-semibold">Software Engineer Intern | Valhalla Data Systems</h3>
-              <p className="text-sm text-gray-600">08/2024-11/2024</p>
+              <p className="text-sm text-gray-600"><strong className="text-blue-400">08/2024-11/2024</strong></p>
               <ul className="list-disc list-inside mt-2">
                 <li>Designed and launched a Full Stack education website ”Olademy,” enhancing Maryland High School education access. And enabling free education from top tier universities.</li>
                 <li>Revamped design tools and processes, leading to an 80% increase in annual revenue.</li>
@@ -32,7 +32,7 @@ function Experience() {
 
             <div>
               <h3 className="text-xl font-semibold">IT Project Manager | Santas knights</h3>
-              <p className="text-sm text-gray-600">06/2024-08/2024</p>
+              <p className="text-sm text-gray-600"><strong className="text-blue-400">06/2024-08/2024</strong></p>
               <ul className="list-disc list-inside mt-2">
                 <li>Optimized product recommendations using machine learning, increasing average order value by 20%.</li>
                 <li>Managed cross-functional teams, reducing project delays by 25% through improved collaboration.</li>
@@ -42,7 +42,7 @@ function Experience() {
 
             <div>
               <h3 className="text-xl font-semibold">Data Analyst Intern | Expand AI</h3>
-              <p className="text-sm text-gray-600">06/2023-08/2023</p>
+              <p className="text-sm text-gray-600"><strong className="text-blue-400">06/2023-08/2023</strong></p>
               <ul className="list-disc list-inside mt-2">
                 <li>Optimized product recommendations using machine learning, increasing average order value by 20%.</li>
                 <li>Maintained an efficient ML pipeline using data integration, API Integration, improved projects efficiency to 70%</li>

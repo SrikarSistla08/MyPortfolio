@@ -59,7 +59,7 @@ function Skills() {
                     transition={{ duration: 0.5 }}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
                 </motion.svg>
-                <h2 className="text-3xl hover:text-blue-400 transition duration-200">Skills & Abilities</h2>
+                <h2 className="text-white text-3xl hover:text-blue-400 transition duration-200">Skills & Abilities</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-lg">
                 {skills.map((skill, index) => (

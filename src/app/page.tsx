@@ -142,7 +142,7 @@ export default function Home() {
           <Header />
         </AnimatedSection>
         <div className="mx-auto px-8 py-16 ">
-          <main className="space-y-24">
+          <main className="space-y-24 text-white">
             <AnimatedSection>
               <About />
               <div className="mt-8">
@@ -173,17 +173,17 @@ export default function Home() {
           <Skills />
         </AnimatedSection>
         <AnimatedSection className="mx-auto px-8 py-16">
-              <section id="creations" className="space-y-8">
-                <h2 className="text-4xl font-bold mb-8">My Creations</h2>
+              <section id="creations" className="flex flex-col space-y-8">
+                <h2 className="text-white text-4xl mb-8">My Creations</h2>
                 <div className="grid md:grid-cols-2 gap-8">
                   <Link href="/photography" className="group">
-                    <div className="bg-purple-900 rounded-2xl p-6 transition-all duration-300 transform group-hover:shadow-xl">
+                    <div className="bg-purple-900 rounded-2xl p-6 transition-all duration-300 transform hover:scale-105 group-hover:shadow-2xl">
                       <h3 className="text-2xl font-semibold mb-4 text-white">Photography</h3>
                       <p className="text-purple-100">Explore my visual journey through Instagram</p>
                     </div>
                   </Link>
                   <Link href="/music" className="group">
-                    <div className="bg-green-600 rounded-2xl p-6 transition-all duration-300 transform group-hover:shadow-xl">
+                    <div className="bg-green-600 rounded-2xl p-6 transition-all duration-300 transform hover:scale-105 group-hover:shadow-2xl">
                       <h3 className="text-2xl font-semibold mb-4 text-white">Music</h3>
                       <p className="text-green-100">Listen to my musical creations on Spotify</p>
                     </div>
