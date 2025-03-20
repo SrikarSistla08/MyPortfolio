@@ -20,7 +20,7 @@ const HeroPh=() => {
     <motion.div
             className="absolute inset-1 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/Ph1.JPG')",
+              backgroundImage: "url('/Ph1.jpg')",
               scale,
               y,
               opacity,
@@ -107,7 +107,7 @@ export default function PhotographyPage() {
               <img src={"/sec1.jpg"} className="h-full w-full object-cover" alt="Section 2" />
             </div>
             <div className="scroll-section">
-              <img src={"/sec2.jpg"} className="h-full w-full object-cover" alt="Section 3" />
+              <img src={"/sec2.JPG"} className="h-full w-full object-cover" alt="Section 3" />
             </div>
             <div className="scroll-section">
               <img
