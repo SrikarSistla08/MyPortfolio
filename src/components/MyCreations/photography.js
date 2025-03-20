@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import Link from 'next/link';
 import Instafeed from 'instafeed.js';
-import tempHeader from '../tempHeader';
 
 export default function Photography() {
   useEffect(() => {
@@ -20,15 +18,8 @@ export default function Photography() {
 
   return (
     <div className="min-h-screen p-8 sm:p-20 font-['rajdhani'] bg-gradient-to-br from-gray-900 to-black tracking-wide animate-fadeIn">
-      <header className="mb-12">
-        <Link href="/" className="text-2xl sm:text-3xl font-bold hover:text-stone-500 transition-colors duration-200">
-          {tempHeader()}
-        </Link>
-        <h1 className="text-4xl sm:text-5xl font-bold mt-4 animate-fadeIn duration-100">My Photography</h1>
-      </header>
-      <main>
-        <p className="mb-9 text-lg sm:text-xl animate-wave-down">The perspective towards life keeps changing</p>
-        <div id="instafeed" className="columns-2 gap-4 sm:columns-3 sm:gap-8">
+      <section>
+          <div id="instafeed" className="columns-2 gap-4 sm:columns-3 sm:gap-8">
           {/* Instagram images will be added dynamically */}
         </div>
         <p className="mt-8 mb-4 text-lg sm:text-xl tracking-wide animate-slide-in-right">Follow me on Instagram for more:</p>
@@ -40,7 +31,7 @@ export default function Photography() {
         >
           @vhs.dawn on Instagram
         </a>
-      </main>
+      </section>
     </div>
   );
 }

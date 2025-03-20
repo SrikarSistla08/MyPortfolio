@@ -14,11 +14,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "framer-motion": "^12.5.0",
+    "gsap": "^3.12.7",
     "instafeed.js": "^2.0.0",
     "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "tailwind-gradient-mask-image": "^1.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

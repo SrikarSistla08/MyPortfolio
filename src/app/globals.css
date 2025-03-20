@@ -158,3 +158,45 @@ body {
   font-size: 16px;
   cursor: pointer;
 }
+
+.scroll-section-outer{
+  overflow: hidden;
+}
+
+.scroll-section-inner{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 400vw;
+  position: relative;
+}
+
+.scroll-section {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.scroll-section h3 {
+  color: var(--primaryTextColor);
+  letter-spacing: var(--headlineMedium);
+  font-size: var(--headlineMedium);
+  background: linear-gradient(
+    to below,
+    var(--primaryTextColor) 0%,
+    var(--primaryTextColor) 100%
+  );
+}
+
+.mask-image {
+  background: linear-gradient(
+    rgb(0 0 0/1),
+    rgb(0 0 0/0.5) 10%,
+    rgb(0 0 0/0)
+  );
+}
