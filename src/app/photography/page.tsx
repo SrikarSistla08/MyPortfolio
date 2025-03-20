@@ -126,8 +126,8 @@ export default function PhotographyPage() {
       <section
         className="grid grid-rows-auto mt-10 p-2 gap-4 sm:p-1"
         style={{
-          maskImage: "linear-gradient(to top, rgb(53, 53, 53), rgba(0, 0, 0, 0))",
-          WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0))",
+          // maskImage: "linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0))",
+          WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1), rgba(0, 0, 0, 0.6))",
         }}
       >
         <div>
