@@ -15,26 +15,31 @@ const Hero = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  // Transformations for smooth fading and blending
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]); // Slight zoom out
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]); // Moves up slightly
 
   return (
     <section ref={ref} className="relative h-screen overflow-hidden">
+      {/* Background image with blending effect */}
       <motion.div
-        className="absolute inset-0 z-0 bg-cover bg-center"
+        className="absolute inset-1 bg-cover bg-center"
         style={{
           backgroundImage: "url('/bc.JPG')",
-          y: backgroundY,
-          opacity: 0.7,
+          scale,
+          y,
+          opacity,
+          maskImage: "linear-gradient(to bottom, rgb(0, 0, 0), rgba(0,0,0,0))",
+          WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))",
         }}
       />
-      <motion.div
-        className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white"
-        style={{ opacity }}
-      >
+
+      {/* Content Layer */}
+      <div className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white">
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -52,21 +57,28 @@ const Hero = () => {
           Aspiring Web Developer and Data Analyst
         </motion.p>
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
         >
-          <Link href="#header"
+            <Link
+            href="#header"
             className="bg-white text-black py-2 px-6 rounded-full hover:bg-opacity-80 transition duration-300 text-lg font-semibold"
-          >
+            onClick={(e) => {
+              e.preventDefault();
+              const target = document.querySelector("#header");
+              if (target) {
+              target.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            >
             Explore My Work
-          </Link>
+            </Link>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };
-
 const BackToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
