@@ -137,7 +137,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col font-['rajdhani'] bg-gradient-to-br from-slate-900 to-black">
       <BackToTopButton />
       <Hero />
-      <div className="mx-auto px-8 py-16">
+      <div className="mx-auto px-auto py-16">
         <AnimatedSection id="header" className="mb-16">
           <Header />
         </AnimatedSection>
