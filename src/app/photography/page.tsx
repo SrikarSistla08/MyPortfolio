@@ -20,7 +20,7 @@ const HeroPh=() => {
     <motion.div
             className="absolute inset-1 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/Ph1.jpg')",
+              backgroundImage: "url('/bc.JPG')",
               scale,
               y,
               opacity,
