@@ -41,7 +41,7 @@ import { motion } from 'framer-motion';
 
 function About() {
     return (
-        <section id="about" className="flex flex-col items-center sm:items-start gap-8 px-6 py-12 bg-gradient-to-b from-slate-900 to-gray-850 rounded-2xl shadow-lg">
+        <section id="about" className="flex flex-col items-center sm:items-start gap-8 px-6 py-12 bg-gradient-to-b from-slate-950 to-gray-900 rounded-2xl shadow-lg">
             {/* Profile Image with Animation */}
             <motion.div
                 whileHover={{ scale: 1.1 }}
@@ -98,6 +98,15 @@ function About() {
             >
                 Download Resume
             </motion.a> */}
+            <div className="mt-8">
+                <a
+                    href="Resume.pdf"
+                    download
+                    className=" bg-slate-900 text-white font-semibold py-3 px-6 rounded-2xl hover:bg-blue-700 transition-colors duration-300 tracking-wide"
+                >
+                Download Resume
+                </a>
+            </div>
         </section>
     );
 }

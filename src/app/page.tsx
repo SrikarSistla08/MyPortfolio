@@ -72,7 +72,7 @@ const Hero = () => {
               }
             }}
             >
-            Explore My Work
+            Explore More
             </Link>
         </motion.div>
       </div>
@@ -157,15 +157,6 @@ export default function Home() {
           <main className="space-y-24 text-white">
             <AnimatedSection>
               <About />
-              <div className="mt-8">
-                <a
-                  href="Resume.pdf"
-                  download
-                  className="inline-block bg-slate-900 text-white font-semibold py-3 px-6 rounded-2xl hover:bg-blue-700 transition-colors duration-300 tracking-wide"
-                >
-                  Download Resume
-                </a>
-              </div>
             </AnimatedSection>
             <AnimatedSection>
               <Experience />
