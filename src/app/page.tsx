@@ -8,6 +8,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentTime, setCurrentTime] = useState<string>("");
   const [mounted, setMounted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -26,6 +27,10 @@ const Navigation = () => {
     };
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -34,20 +39,22 @@ const Navigation = () => {
         isScrolled ? "bg-black/95 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex justify-between items-center">
           <motion.div
             whileHover={{ opacity: 0.8 }}
-            className="flex items-center space-x-3"
+            className="flex items-center space-x-2 sm:space-x-3"
           >
-            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="ml-4 text-green-400 font-mono text-sm">
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
+            <span className="ml-2 sm:ml-4 text-green-400 font-mono text-xs sm:text-sm">
               srikar@portfolio:~$
             </span>
           </motion.div>
-          <div className="hidden md:flex items-center space-x-8">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
             {mounted && (
               <div className="text-green-400 font-mono text-xs">
                 {currentTime}
@@ -68,7 +75,62 @@ const Navigation = () => {
               </a>
             </div>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="lg:hidden text-green-400 hover:text-white transition-colors p-2"
+            aria-label="Toggle mobile menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+      <motion.div
+          initial={false}
+          animate={{ 
+            height: isMobileMenuOpen ? "auto" : 0,
+            opacity: isMobileMenuOpen ? 1 : 0
+          }}
+          transition={{ duration: 0.3 }}
+          className="lg:hidden overflow-hidden"
+        >
+          <div className="pt-4 pb-2 space-y-3">
+            {mounted && (
+              <div className="text-green-400 font-mono text-xs mb-3">
+                {currentTime}
+              </div>
+            )}
+            <a 
+              href="#work" 
+              className="block text-green-400 hover:text-white transition-colors font-mono text-sm py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ./work <span className="text-xs text-gray-500">(6 repos)</span>
+            </a>
+            <a 
+              href="#about" 
+              className="block text-green-400 hover:text-white transition-colors font-mono text-sm py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ./about <span className="text-xs text-gray-500">(story)</span>
+            </a>
+            <a 
+              href="#contact" 
+              className="block text-green-400 hover:text-white transition-colors font-mono text-sm py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ./contact <span className="text-xs text-gray-500">(ping me)</span>
+            </a>
+          </div>
+        </motion.div>
       </div>
     </motion.nav>
   );
@@ -147,21 +209,21 @@ const Hero = () => {
 
       {/* Terminal-style Content */}
       <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="text-left text-green-400 max-w-4xl mx-auto px-6 font-mono">
+        <div className="text-left text-green-400 max-w-4xl mx-auto px-4 sm:px-6 font-mono">
         <motion.div
               initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="space-y-4"
+              className="space-y-3 sm:space-y-4"
         >
-            <div className="text-sm text-gray-400 mb-4">
+            <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">
               <span className="text-yellow-400">$</span> whoami
             </div>
           <motion.h1
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.2, delay: 0.05 }}
-            className="text-4xl md:text-6xl font-bold text-white mb-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight"
           >
             Srikar Sistla
           </motion.h1>
@@ -176,18 +238,18 @@ const Hero = () => {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.2, delay: 0.15 }}
-            className="text-sm text-gray-300 space-y-3 font-mono"
+            className="text-xs sm:text-sm text-gray-300 space-y-2 sm:space-y-3 font-mono"
           >
-              <div className="flex items-center">
+              <div className="flex items-center flex-wrap">
                 <span className="text-green-400 mr-2">❯</span>
                 <span className="text-gray-400">// Available for collaboration</span>
                 <span className="text-green-400 ml-2">●</span>
               </div>
-              <div className="flex items-center text-xs text-gray-500">
+              <div className="flex items-center text-xs text-gray-500 flex-wrap">
                 <span className="text-green-400 mr-2">❯</span>
                 <span>Last commit: <span className="text-green-400">&quot;captured golden hour in Baltimore&quot;</span></span>
               </div>
-              <div className="flex items-center text-xs text-gray-500">
+              <div className="flex items-center text-xs text-gray-500 flex-wrap">
                 <span className="text-green-400 mr-2">❯</span>
                 <span>Currently: <span className="text-blue-400">debugging life</span> | <span className="text-purple-400">optimizing creativity</span></span>
               </div>
@@ -196,11 +258,11 @@ const Hero = () => {
               initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, delay: 0.2 }}
-              className="flex justify-start mt-8"
+              className="flex justify-start mt-6 sm:mt-8"
             >
-              <div className="w-8 h-8 border border-green-400 rounded-full flex items-center justify-center">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 border border-green-400 rounded-full flex items-center justify-center">
                 <motion.div
-                  animate={{ y: [0, 8, 0] }}
+                  animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                   className="w-1 h-1 bg-green-400 rounded-full"
                 />
@@ -282,23 +344,23 @@ const ProjectsShowcase = () => {
   ];
 
   return (
-    <section id="work" className="py-20 bg-black text-green-400">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="work" className="py-12 sm:py-16 lg:py-20 bg-black text-green-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.2 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="text-sm text-gray-400 mb-4 font-mono">
+          <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
             <span className="text-yellow-400">$</span> ls -la projects/
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4 font-mono">PROJECTS</h2>
-          <div className="w-24 h-0.5 bg-green-400 mx-auto"></div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">PROJECTS</h2>
+          <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto"></div>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <motion.a
               key={project.id}
@@ -341,26 +403,26 @@ const ProjectsShowcase = () => {
                   <div className="text-sm font-bold">{project.title}</div>
                 </div>
               </div>
-              <div className="p-6 bg-gray-900">
-                <h3 className="text-xl font-bold text-white mb-3 font-mono">{project.title}</h3>
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+              <div className="p-4 sm:p-6 bg-gray-900">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 font-mono leading-tight">{project.title}</h3>
+                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-green-400/20 text-green-400 text-xs font-mono rounded border border-green-400/30"
+                      className="px-2 sm:px-3 py-1 bg-green-400/20 text-green-400 text-xs font-mono rounded border border-green-400/30"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between flex-wrap gap-2">
                   <span className="text-xs font-mono text-gray-500">
                     {project.category.toUpperCase()}
                   </span>
-                  <span className="text-green-400 group-hover:text-white transition-colors font-mono">
+                  <span className="text-green-400 group-hover:text-white transition-colors font-mono text-xs sm:text-sm">
                     {'>'} view repo
                   </span>
                 </div>
@@ -432,21 +494,21 @@ const PhotographyGallery = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-900 text-green-400">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gray-900 text-green-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="text-sm text-gray-400 mb-4 font-mono">
+          <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
             <span className="text-yellow-400">$</span> ls -la photography/
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4 font-mono">PHOTOGRAPHY</h2>
-          <div className="w-24 h-0.5 bg-green-400 mx-auto"></div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">PHOTOGRAPHY</h2>
+          <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto"></div>
         </motion.div>
 
         {/* Envelope/Dropdown Container */}
@@ -532,7 +594,7 @@ const PhotographyGallery = () => {
               
               <div className="p-6">
                 {/* Photo Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                   {photos.map((photo, index) => (
                     <motion.div
                       key={index}
@@ -604,14 +666,14 @@ const PhotographyGallery = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-2 sm:p-4"
             onClick={() => setSelectedPhoto(null)}
           >
       <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl max-h-[90vh] bg-black rounded-lg overflow-hidden shadow-2xl"
+              className="relative max-w-4xl max-h-[95vh] sm:max-h-[90vh] bg-black rounded-lg overflow-hidden shadow-2xl w-full"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Window Header with Traffic Lights */}
@@ -640,20 +702,20 @@ const PhotographyGallery = () => {
                 {/* Navigation Arrows */}
                 <button
                   onClick={goToPreviousPhoto}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full border border-gray-600 hover:border-green-400 transition-all duration-300"
+                  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full border border-gray-600 hover:border-green-400 transition-all duration-300 touch-manipulation"
                   title="Previous photo"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
                 
                 <button
                   onClick={goToNextPhoto}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full border border-gray-600 hover:border-green-400 transition-all duration-300"
+                  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full border border-gray-600 hover:border-green-400 transition-all duration-300 touch-manipulation"
                   title="Next photo"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
                 </button>
@@ -682,29 +744,29 @@ const PhotographyGallery = () => {
 // About Section
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-black text-green-400">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="about" className="py-12 sm:py-16 lg:py-20 bg-black text-green-400">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="text-sm text-gray-400 mb-4 font-mono">
+          <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
             <span className="text-yellow-400">$</span> cat about.txt
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4 font-mono">ABOUT</h2>
-          <div className="w-24 h-0.5 bg-green-400 mx-auto"></div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">ABOUT</h2>
+          <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="relative h-96 border border-gray-800"
+            className="relative h-64 sm:h-80 lg:h-96 border border border-gray-800"
           >
             <Image
               src="/Profile.jpg"
@@ -721,7 +783,7 @@ const About = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="space-y-6 font-mono"
+            className="space-y-4 sm:space-y-6 font-mono"
           >
             <div className="text-sm text-gray-400">
               <span className="text-yellow-400">//</span> Professional Summary
@@ -759,24 +821,24 @@ const About = () => {
 // Contact Section
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-gray-900 text-green-400">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-gray-900 text-green-400">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-6 sm:space-y-8"
         >
-          <div className="text-sm text-gray-400 mb-4 font-mono">
+          <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
             <span className="text-yellow-400">$</span> contact --help
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4 font-mono">CONTACT</h2>
-          <div className="w-24 h-0.5 bg-green-400 mx-auto mb-8"></div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">CONTACT</h2>
+          <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto mb-6 sm:mb-8"></div>
           
-          <p className="text-lg text-gray-300 font-mono">
+          <p className="text-base sm:text-lg text-gray-300 font-mono">
             Ready to collaborate or just want to say hello?
           </p>
-          <div className="flex justify-center space-x-8 text-sm font-mono">
+          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 lg:space-x-8 text-sm font-mono">
             <a
               href="mailto:srikarsistla710@gmail.com"
               className="text-green-400 hover:text-white transition-colors"
