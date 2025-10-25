@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 // Geeky Terminal-style Navigation
@@ -95,7 +94,7 @@ const TypingAnimation = () => {
         if (currentText.length < currentRole.length) {
           setCurrentText(currentRole.slice(0, currentText.length + 1));
         } else {
-          setTimeout(() => setIsDeleting(true), 2000);
+          setTimeout(() => setIsDeleting(true), 1000);
         }
       } else {
         if (currentText.length > 0) {
@@ -105,7 +104,7 @@ const TypingAnimation = () => {
           setCurrentIndex((prev) => (prev + 1) % roles.length);
         }
       }
-    }, isDeleting ? 50 : 100);
+    }, isDeleting ? 30 : 60);
     
     return () => clearTimeout(timeout);
   }, [currentText, currentRole, isDeleting]);
@@ -118,94 +117,6 @@ const TypingAnimation = () => {
   );
 };
 
-// Matrix-style Code Rain Effect
-const CodeRain = () => {
-  const [drops, setDrops] = useState<Array<{id: number, x: number, speed: number, text: string}>>([]);
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-    const characters = "01";
-    const newDrops = Array.from({ length: 20 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      speed: Math.random() * 3 + 1,
-      text: characters[Math.floor(Math.random() * characters.length)]
-    }));
-    setDrops(newDrops);
-  }, []);
-  
-  if (!mounted) return null;
-
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {drops.map((drop) => (
-        <motion.div
-          key={drop.id}
-          className="absolute text-green-400/20 font-mono text-xs"
-          style={{ left: `${drop.x}%` }}
-          animate={{
-            y: [0, window.innerHeight + 100],
-            opacity: [0, 1, 0]
-          }}
-          transition={{
-            duration: drop.speed,
-            repeat: Infinity,
-            delay: Math.random() * 2
-          }}
-        >
-          {drop.text}
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-
-// Floating Terminal Commands
-const FloatingCommands = () => {
-  const commands = [
-    "npm install creativity",
-    "git commit -m 'capture moment'",
-    "python analyze_data.py",
-    "ls -la projects/",
-    "cat portfolio.txt"
-  ];
-  
-  // Fixed positions to avoid hydration mismatch
-  const positions = [
-    { left: "15%", top: "25%" },
-    { left: "75%", top: "35%" },
-    { left: "25%", top: "55%" },
-    { left: "65%", top: "65%" },
-    { left: "45%", top: "45%" }
-  ];
-  
-  return (
-    <div className="absolute inset-0 pointer-events-none">
-      {commands.map((command, index) => (
-      <motion.div
-          key={index}
-          className="absolute text-green-400/10 font-mono text-xs"
-        style={{
-            left: positions[index].left,
-            top: positions[index].top
-          }}
-          animate={{
-            opacity: [0, 0.3, 0],
-            scale: [0.8, 1, 0.8]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            delay: index * 0.8
-          }}
-        >
-          {command}
-        </motion.div>
-      ))}
-    </div>
-  );
-};
 
 // Geeky Hero Section
 const Hero = () => {
@@ -226,6 +137,7 @@ const Hero = () => {
           fill
           className="object-cover"
           priority
+          quality={85}
         />
       </motion.div>
 
@@ -239,7 +151,7 @@ const Hero = () => {
         <motion.div
               initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="space-y-4"
         >
             <div className="text-sm text-gray-400 mb-4">
@@ -248,7 +160,7 @@ const Hero = () => {
           <motion.h1
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            transition={{ duration: 0.2, delay: 0.05 }}
             className="text-4xl md:text-6xl font-bold text-white mb-2"
           >
             Srikar Sistla
@@ -256,14 +168,14 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
           >
             <TypingAnimation />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
+            transition={{ duration: 0.2, delay: 0.15 }}
             className="text-sm text-gray-300 space-y-3 font-mono"
           >
               <div className="flex items-center">
@@ -273,7 +185,7 @@ const Hero = () => {
               </div>
               <div className="flex items-center text-xs text-gray-500">
                 <span className="text-green-400 mr-2">❯</span>
-                <span>Last commit: <span className="text-green-400">"captured golden hour in Baltimore"</span></span>
+                <span>Last commit: <span className="text-green-400">&quot;captured golden hour in Baltimore&quot;</span></span>
               </div>
               <div className="flex items-center text-xs text-gray-500">
                 <span className="text-green-400 mr-2">❯</span>
@@ -283,7 +195,7 @@ const Hero = () => {
           <motion.div
               initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.4 }}
+              transition={{ duration: 0.2, delay: 0.2 }}
               className="flex justify-start mt-8"
             >
               <div className="w-8 h-8 border border-green-400 rounded-full flex items-center justify-center">
@@ -376,7 +288,7 @@ const ProjectsShowcase = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.2 }}
           className="text-center mb-16"
         >
           <div className="text-sm text-gray-400 mb-4 font-mono">
@@ -396,7 +308,7 @@ const ProjectsShowcase = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
+              transition={{ duration: 0.2, delay: index * 0.02 }}
               className="group cursor-pointer border border-gray-800 hover:border-green-400 transition-colors duration-200 block"
             >
               <div className="relative h-64 overflow-hidden">
@@ -415,6 +327,8 @@ const ProjectsShowcase = () => {
                     alt={project.title}
                     fill
                     className="object-cover transition-opacity duration-200 group-hover:opacity-90"
+                    loading="lazy"
+                    quality={80}
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-800 flex items-center justify-center">
@@ -480,9 +394,9 @@ const PhotographyGallery = () => {
           setTimeout(() => {
             setTypingText("");
             setTypingIndex(0);
-          }, 2000);
+          }, 1000);
         }
-      }, 100);
+      }, 50);
       
       return () => clearTimeout(timer);
     }
@@ -507,11 +421,11 @@ const PhotographyGallery = () => {
     { src: "/sec2.JPG", title: "Cathedral of Light", category: "Architecture" },
     { src: "/sec3.jpg", title: "Intimate Portrait", category: "Portrait" },
     { src: "/sec4.JPG", title: "Serene Waters", category: "Nature" },
-    { src: "/sec5.jpg", title: "Urban Pulse", category: "Street" },
+    { src: "/sec5.JPG", title: "Urban Pulse", category: "Street" },
     { src: "/sec6.jpg", title: "Geometric Harmony", category: "Architecture" },
     { src: "/sec7.jpg", title: "Chid's Play", category: "Nature" },
-    { src: "/sec8.jpg", title: "Street Stories", category: "Street" },
-    { src: "/sec9.jpg", title: "City Rhythms", category: "Architecture" },
+    { src: "/sec8.JPG", title: "Street Stories", category: "Street" },
+    { src: "/sec9.JPG", title: "City Rhythms", category: "Architecture" },
     { src: "/sec10.jpg", title: "Modern Lines", category: "Architecture" },
     { src: "/bc.JPG", title: "Sunset Serenity", category: "Nature" },
     { src: "/bc2.jpg", title: "Air Borne", category: "Nature" },
@@ -525,7 +439,7 @@ const PhotographyGallery = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.3 }}
           className="text-center mb-16"
         >
           <div className="text-sm text-gray-400 mb-4 font-mono">
@@ -542,7 +456,7 @@ const PhotographyGallery = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.2 }}
             className="border border-gray-700 rounded-lg bg-black/80 backdrop-blur-sm overflow-hidden cursor-pointer"
             onClick={() => setIsExpanded(!isExpanded)}
           >
@@ -601,14 +515,14 @@ const PhotographyGallery = () => {
               opacity: isExpanded ? 1 : 0,
               y: isExpanded ? 0 : -20
             }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
             <motion.div 
               className="border border-gray-700 rounded-lg bg-black/60 backdrop-blur-sm mt-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: isExpanded ? 1 : 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
             >
               {/* Gallery Header */}
               <div className="flex items-center justify-between px-4 py-3 bg-gray-800/30 border-b border-gray-700">
@@ -628,8 +542,8 @@ const PhotographyGallery = () => {
                         y: isExpanded ? 0 : 30
                       }}
                       transition={{ 
-                        duration: 0.4, 
-                        delay: index * 0.05,
+                        duration: 0.2, 
+                        delay: index * 0.02,
                         ease: "easeOut"
                       }}
                       className="group cursor-pointer"
@@ -642,6 +556,8 @@ const PhotographyGallery = () => {
                           width={400}
                           height={300}
                           className="w-full h-64 object-cover transition-all duration-300 group-hover:scale-102 grayscale group-hover:grayscale-0"
+                          loading="lazy"
+                          quality={75}
                         />
                         
                         {/* Minimal Overlay */}
@@ -795,6 +711,8 @@ const About = () => {
               alt="Srikar Sistla"
               fill
               className="object-cover"
+              loading="lazy"
+              quality={85}
             />
           </motion.div>
           
@@ -809,18 +727,18 @@ const About = () => {
               <span className="text-yellow-400">//</span> Professional Summary
             </div>
             <p className="text-gray-300 leading-relaxed">
-              I'm a multidisciplinary professional who finds beauty in both code and photography. 
+              I&apos;m a multidisciplinary professional who finds beauty in both code and photography. 
               As a software developer, I build digital solutions that matter. As a business analyst, 
-              I turn data into insights. And as a photographer, I capture the world's stories.
+              I turn data into insights. And as a photographer, I capture the world&apos;s stories.
             </p>
             <p className="text-gray-300 leading-relaxed">
               Based in Maryland, I believe in the power of clean code, clean design, and clean photography. 
               Every project is an opportunity to create something meaningful.
             </p>
             <div className="space-y-2 text-sm">
-              <div><span className="text-blue-400">const</span> <span className="text-yellow-400">education</span> = <span className="text-green-400">"UMBC Information Systems"</span>;</div>
-              <div><span className="text-blue-400">const</span> <span className="text-yellow-400">experience</span> = <span className="text-green-400">"Software Engineer @ TANTVSTUDIOS"</span>;</div>
-              <div><span className="text-blue-400">const</span> <span className="text-yellow-400">location</span> = <span className="text-green-400">"Halethorpe, MD"</span>;</div>
+              <div><span className="text-blue-400">const</span> <span className="text-yellow-400">education</span> = <span className="text-green-400">&quot;UMBC Information Systems&quot;</span>;</div>
+              <div><span className="text-blue-400">const</span> <span className="text-yellow-400">experience</span> = <span className="text-green-400">&quot;Software Engineer @ TANTVSTUDIOS&quot;</span>;</div>
+              <div><span className="text-blue-400">const</span> <span className="text-yellow-400">location</span> = <span className="text-green-400">&quot;Halethorpe, MD&quot;</span>;</div>
             </div>
             <div className="pt-4">
               <a
@@ -837,72 +755,6 @@ const About = () => {
   );
 };
 
-// Achievements Section
-const AchievementsSection = () => {
-  const achievements = [
-    {
-      title: "Published Research",
-      description: "Diabetes Prediction using SVM - IJSCE Journal",
-      icon: "📚",
-      color: "text-blue-400"
-    },
-    {
-      title: "Data Analysis Expert",
-      description: "MTA Ridership Analysis with Power BI",
-      icon: "📊",
-      color: "text-green-400"
-    },
-    {
-      title: "Full-Stack Developer",
-      description: "Multiple web applications deployed",
-      icon: "💻",
-      color: "text-purple-400"
-    },
-    {
-      title: "Photography Portfolio",
-      description: "Capturing moments across Maryland",
-      icon: "📸",
-      color: "text-orange-400"
-    }
-  ];
-
-  return (
-    <section className="py-20 bg-black text-green-400">
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-16"
-        >
-          <div className="text-sm text-gray-400 mb-4 font-mono">
-            <span className="text-yellow-400">$</span> ls -la achievements/
-          </div>
-          <h2 className="text-4xl font-bold text-white mb-4 font-mono">ACHIEVEMENTS</h2>
-          <div className="w-24 h-0.5 bg-green-400 mx-auto"></div>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={achievement.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-gray-900 border border-gray-800 p-6 rounded-lg hover:border-green-400 transition-colors duration-200 text-center"
-            >
-              <div className="text-4xl mb-4">{achievement.icon}</div>
-              <h3 className="text-lg font-bold text-white mb-2 font-mono">{achievement.title}</h3>
-              <p className="text-sm text-gray-300 font-mono">{achievement.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // Contact Section
 const Contact = () => {
@@ -979,64 +831,6 @@ const Footer = () => {
   );
 };
 
-// Skills Section with Interactive Elements
-const SkillsSection = () => {
-  const skills = [
-    { name: "React", level: 90, color: "text-blue-400" },
-    { name: "Python", level: 85, color: "text-yellow-400" },
-    { name: "Power BI", level: 80, color: "text-orange-400" },
-    { name: "Photography", level: 95, color: "text-purple-400" },
-    { name: "Data Analysis", level: 88, color: "text-green-400" },
-    { name: "Machine Learning", level: 75, color: "text-red-400" }
-  ];
-
-  return (
-    <section className="py-20 bg-gray-900 text-green-400">
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-16"
-        >
-          <div className="text-sm text-gray-400 mb-4 font-mono">
-            <span className="text-yellow-400">$</span> cat skills.txt
-          </div>
-          <h2 className="text-4xl font-bold text-white mb-4 font-mono">SKILLS</h2>
-          <div className="w-24 h-0.5 bg-green-400 mx-auto"></div>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-black border border-gray-800 p-6 rounded-lg hover:border-green-400 transition-colors duration-200"
-            >
-              <div className="flex justify-between items-center mb-3">
-                <span className="font-mono text-white">{skill.name}</span>
-                <span className={`font-mono text-sm ${skill.color}`}>{skill.level}%</span>
-              </div>
-              <div className="w-full bg-gray-800 rounded-full h-2">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: index * 0.1 }}
-                  className={`h-2 rounded-full bg-gradient-to-r from-green-400 to-green-300`}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // Main Page Component
 export default function Home() {
