@@ -15,6 +15,44 @@
     background-color: #000000;
   }
 
+  /* Mobile Hero Image Positioning */
+  @media (max-width: 640px) {
+    .hero-bg-mobile {
+      object-position: 40% 25% !important;
+      transform: scale(1.1);
+    }
+  }
+  
+  @media (min-width: 641px) and (max-width: 768px) {
+    .hero-bg-mobile {
+      object-position: 45% 30% !important;
+      transform: scale(1.05);
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .hero-bg-mobile {
+      object-position: center center !important;
+      transform: scale(1);
+    }
+  }
+  
+  /* Additional mobile face positioning */
+  @media (max-width: 480px) {
+    .hero-bg-mobile {
+      object-position: 35% 20% !important;
+      transform: scale(1.15);
+    }
+  }
+  
+  /* Ultra-small mobile devices */
+  @media (max-width: 360px) {
+    .hero-bg-mobile {
+      object-position: 30% 15% !important;
+      transform: scale(1.2);
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     letter-spacing: -0.02em;

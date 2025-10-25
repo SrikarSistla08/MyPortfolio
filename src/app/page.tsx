@@ -187,7 +187,7 @@ const Hero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section className="relative h-screen overflow-hidden bg-black">
+    <section className="relative h-screen min-h-[600px] sm:min-h-[700px] overflow-hidden bg-black">
       {/* Background Image with Parallax */}
       <motion.div
         style={{ y, opacity }}
@@ -197,7 +197,7 @@ const Hero = () => {
           src="/Ph1.jpg"
           alt="Hero Background"
           fill
-          className="object-cover"
+          className="object-cover object-center object-top sm:object-center md:object-center lg:object-center hero-bg-mobile"
           priority
           quality={85}
         />
@@ -209,7 +209,7 @@ const Hero = () => {
 
       {/* Terminal-style Content */}
       <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="text-left text-green-400 max-w-4xl mx-auto px-4 sm:px-6 font-mono">
+        <div className="text-left text-green-400 max-w-4xl mx-auto px-4 sm:px-6 font-mono pt-16 sm:pt-0">
         <motion.div
               initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
