@@ -62,14 +62,14 @@ const Music = () => {
             </div>
             <h2 className="text-2xl font-bold text-white mb-4 font-mono">COMING SOON</h2>
             <p className="text-gray-300 font-mono leading-relaxed max-w-md mx-auto">
-              I'm currently working on some musical projects that blend my technical background with creative expression. 
+              I&apos;m currently working on some musical projects that blend my technical background with creative expression. 
               Check back soon for updates on my musical journey.
             </p>
           </div>
           
           <div className="space-y-4">
             <div className="text-sm text-gray-400 font-mono">
-              <span className="text-yellow-400">$</span> echo "Interested in collaborating on a musical project?"
+              <span className="text-yellow-400">$</span> echo &quot;Interested in collaborating on a musical project?&quot;
             </div>
             <a
               href="mailto:srikarsistla710@gmail.com"
@@ -81,9 +81,9 @@ const Music = () => {
 
           <div className="mt-8 text-xs text-gray-500 font-mono">
             <div className="text-yellow-400 mb-2">$</div>
-            <div>// Current status: Exploring sound design and digital music production</div>
-            <div>// Tools: Ableton Live, Logic Pro, Python (for audio processing)</div>
-            <div>// Genre interests: Electronic, Ambient, Experimental</div>
+            <div>{/* Current status: Exploring sound design and digital music production */}</div>
+            <div>{/* Tools: Ableton Live, Logic Pro, Python (for audio processing) */}</div>
+            <div>{/* Genre interests: Electronic, Ambient, Experimental */}</div>
           </div>
         </motion.div>
       </div>
