@@ -1,25 +1,47 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, RefObject } from 'react';
 
-export function useIntersectionObserver(options = {}) {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const targetRef = useRef(null);
+interface UseIntersectionObserverOptions {
+  threshold?: number | number[];
+  root?: Element | null;
+  rootMargin?: string;
+  triggerOnce?: boolean;
+}
+
+export function useIntersectionObserver(
+  options: UseIntersectionObserverOptions = {}
+): [RefObject<HTMLElement>, boolean] {
+  const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
+  const targetRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsIntersecting(entry.isIntersecting);
-    }, options);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting);
+        
+        // If triggerOnce is true and element is intersecting, disconnect observer
+        if (options.triggerOnce && entry.isIntersecting) {
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: options.threshold || 0.1,
+        root: options.root || null,
+        rootMargin: options.rootMargin || '0px',
+      }
+    );
 
-    if (targetRef.current) {
-      observer.observe(targetRef.current);
+    const currentTarget = targetRef.current;
+    if (currentTarget) {
+      observer.observe(currentTarget);
     }
 
     return () => {
-      if (targetRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer.unobserve(targetRef.current);
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
       }
+      observer.disconnect();
     };
-  }, [options]);
+  }, [options.threshold, options.root, options.rootMargin, options.triggerOnce]);
 
   return [targetRef, isIntersecting];
 }

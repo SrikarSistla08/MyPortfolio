@@ -1,50 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Advent_Pro, Italiana, Bai_Jamjuree, Montserrat, Rajdhani} from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const italiana = Italiana({
-  weight: "400",
-  subsets: ['latin'],
-  variable: '--font-italiana',
-});
-
-const adventPro = Advent_Pro({
-  subsets: ['latin'],
-  variable: '--font-advent-pro',
-});
-
-const rajdhani = Rajdhani({
-  weight: "400",
-  subsets: ['latin'],
-  variable: '--font-rajdhani',
-});
-
-const baiJamjuree = Bai_Jamjuree({
-  weight: "400",
-  subsets: ['latin'],
-  variable: '--font-bai-jamjuree',
-});
-
-const montserrat = Montserrat({
-  weight: "400",
-  subsets: ['latin'],
-  variable: '--font-montserrat',
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  icons: "/S2.svg",
-  title: "Srikar Sistla",
-  description: "This is my portfolio and my space to see fun stuff!!",
+  title: "Srikar Sistla - Photographer, Developer, Analyst",
+  description: "Multidisciplinary professional specializing in photography, software development, and business analysis. Based in Maryland.",
+  keywords: ["photography", "software development", "business analysis", "data science", "web development"],
+  authors: [{ name: "Srikar Sistla" }],
+  openGraph: {
+    title: "Srikar Sistla - Photographer, Developer, Analyst",
+    description: "Multidisciplinary professional specializing in photography, software development, and business analysis.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({
@@ -53,10 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${adventPro.variable} ${italiana.variable} ${baiJamjuree.variable} ${montserrat.variable} ${rajdhani.variable} antialiased`}
-      >
+    <html lang="en" className={inter.variable}>
+      <body className={`${inter.variable} antialiased`}>
         {children}
       </body>
     </html>

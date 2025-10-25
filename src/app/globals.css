@@ -2,201 +2,181 @@
 @tailwind components;
 @tailwind utilities;
 
-.font-italiana {
-  font-family: 'Italiana', serif;
-}
+/* Geeky Terminal Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    line-height: 1.6;
+    color: #10b981;
+    background-color: #000000;
+  }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #111111;
-    --foreground: #ededed;
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }
 
+@layer components {
+  /* Terminal-style components */
+  .terminal-window {
+    @apply bg-black border border-gray-800 rounded-lg p-6 font-mono;
+  }
+  
+  .terminal-header {
+    @apply flex items-center space-x-2 mb-4;
+  }
+  
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+  
+  .terminal-dot-red {
+    @apply bg-red-500;
+  }
+  
+  .terminal-dot-yellow {
+    @apply bg-yellow-500;
+  }
+  
+  .terminal-dot-green {
+    @apply bg-green-500;
+  }
+
+  /* Code-style buttons */
+  .btn-terminal {
+    @apply inline-block border border-green-400 px-6 py-3 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300;
+  }
+  
+  .btn-terminal-secondary {
+    @apply inline-block border border-gray-600 px-6 py-3 text-sm font-mono text-gray-400 hover:bg-gray-600 hover:text-white transition-colors duration-300;
+  }
+
+  /* Terminal-style cards */
+  .card-terminal {
+    @apply bg-gray-900 border border-gray-800 p-6 hover:border-green-400 transition-colors duration-300;
+  }
+
+  /* Typography utilities */
+  .text-terminal {
+    @apply text-green-400 font-mono;
+  }
+  
+  .text-terminal-secondary {
+    @apply text-gray-300 font-mono;
+  }
+  
+  .text-terminal-muted {
+    @apply text-gray-500 font-mono;
+  }
+
+  /* Spacing utilities */
+  .section-padding {
+    @apply py-20;
+  }
+  
+  .container-padding {
+    @apply px-6;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar for terminal theme */
+  .scrollbar-terminal {
+    scrollbar-width: thin;
+    scrollbar-color: #10b981 #000000;
+  }
+  
+  .scrollbar-terminal::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollbar-terminal::-webkit-scrollbar-track {
+    background: #000000;
+  }
+  
+  .scrollbar-terminal::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 4px;
+  }
+  
+  .scrollbar-terminal::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+  }
+
+  /* Focus styles for terminal theme */
+  .focus-terminal {
+    @apply focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black;
+  }
+
+  /* Animation utilities */
+  .animate-terminal-blink {
+    animation: terminalBlink 1s infinite;
+  }
+  
+  .animate-typewriter {
+    animation: typewriter 2s steps(40) 1s 1 normal both;
+  }
+}
+
+@keyframes terminalBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-terminal-blink {
+  animation: terminalBlink 1s infinite;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Terminal-style selection */
+::selection {
+  background-color: #10b981;
+  color: #000000;
+}
+
+/* Minimal transitions for all interactive elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow;
+  transition-timing-function: ease-out;
+  transition-duration: 100ms;
+}
+
+/* Custom cursor for terminal feel */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Helvetica, sans-serif, 'oswald', 'ramaraja';
+  cursor: text;
 }
 
-.rajdhani-light {
-  font-family: "Rajdhani", serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.rajdhani-regular {
-  font-family: "Rajdhani", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.rajdhani-medium {
-  font-family: "Rajdhani", serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.rajdhani-semibold {
-  font-family: "Rajdhani", serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.rajdhani-bold {
-  font-family: "Rajdhani", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.montserrat-regular {
-  font-family: "Montserrat", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-
-.font-italiana {
-  font-family: 'Italiana', serif;
-}
-
-.font-ramaraja {
-  font-family: 'Ramaraja', serif;
-}
-
-.font-advent-pro-text {
-  font-family: 'Bebas Neue', serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.old-standard-tt-regular {
-  font-family: "Old Standard TT", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.old-standard-tt-bold {
-  font-family: "Old Standard TT", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.old-standard-tt-regular-italic {
-  font-family: "Old Standard TT", serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.abril-fatface-regular {
-  font-family: "Abril Fatface", serif;
-  font-weight: 400;
-  font-style: italic;
-}
-.honk-text {
-  font-family: var(--font-honk);
-}
-
-.advent-pro-text {
-  font-family: var(--font-advent-pro);
-  font-weight: 400;
-  font-style: normal;
-}
-
-.container {
-  transition: all 0.3s ease-in-out;
-  border: 1px solid #3f3f3f36;
-  padding: 20px;
-  background-color: #5f5f5f36;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#instafeed {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-#instafeed img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-
-.parallax {
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-}
-
-.experience-container {
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.back-to-top-button button {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+button, a {
   cursor: pointer;
 }
 
-.scroll-section-outer{
-  overflow: hidden;
+/* Minimal glow effects for interactive elements */
+.hover-glow:hover {
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.1);
 }
 
-.scroll-section-inner{
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  width: 400vw;
-  position: relative;
+/* Matrix-style background effect */
+.matrix-bg {
+  background: linear-gradient(45deg, #000000 0%, #001a0a 50%, #000000 100%);
 }
 
-.scroll-section {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2em;
-  font-style: italic;
-  font-weight: 500;
+/* Terminal prompt styling */
+.terminal-prompt::before {
+  content: "$ ";
+  color: #fbbf24;
 }
 
-.scroll-section h3 {
-  color: var(--primaryTextColor);
-  letter-spacing: var(--headlineMedium);
-  font-size: var(--headlineMedium);
-  background: linear-gradient(
-    to below,
-    var(--primaryTextColor) 0%,
-    var(--primaryTextColor) 100%
-  );
-}
-
-.mask-image {
-  background: linear-gradient(
-    rgb(0 0 0/1),
-    rgb(0 0 0/0.5) 10%,
-    rgb(0 0 0/0)
-  );
+.terminal-prompt::after {
+  content: " ";
+  background-color: #10b981;
+  animation: terminalBlink 1s infinite;
 }
