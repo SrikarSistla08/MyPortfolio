@@ -668,9 +668,9 @@ const ProjectsShowcase = () => {
     {
       id: 7,
       title: "The Valley Inc.",
-      description: "Landing page for a portfolio of startups built for students, local businesses, and underserved communities. Features dark theme, scroll animations, and product cards.",
-      technologies: ["Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      category: "Web Development / Startup",
+      description: "A holding company for early-stage startups targeting underserved gaps — interstate carpooling, student deals, campus communities. Built for students, local businesses, and communities that existing tech overlooks.",
+      technologies: ["Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
+      category: "Startup / Holding Company",
       link: "https://github.com/SrikarSistla08/TheValleyInc",
       image: "/valley.png",
       status: "In Progress"
