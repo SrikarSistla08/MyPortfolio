@@ -1617,16 +1617,28 @@ const About = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="relative h-64 sm:h-80 lg:h-96 border border border-gray-800"
+            className="space-y-4"
           >
-            <Image
-              src="/Profile.jpg"
-              alt="Srikar Sistla"
-              fill
-              className="object-cover"
-              loading="lazy"
-              quality={85}
-            />
+            <div className="relative h-64 sm:h-80 lg:h-96 border border border-gray-800">
+              <Image
+                src="/Profile.jpg"
+                alt="Srikar Sistla"
+                fill
+                className="object-cover"
+                loading="lazy"
+                quality={85}
+              />
+            </div>
+            
+            {/* Laptop Sticker Strip */}
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 p-4 sm:p-6 border border-gray-800 bg-gray-900/50">
+              <motion.div whileHover={{ rotate: [0, -3, 3, 0], scale: 1.05 }} transition={{ duration: 0.3 }} className="cursor-default">
+                <Image src="/UMBC.png" alt="UMBC" width={120} height={40} className="h-12 sm:h-14 w-auto object-contain" />
+              </motion.div>
+              <motion.div whileHover={{ rotate: [0, -3, 3, 0], scale: 1.05 }} transition={{ duration: 0.3 }} className="cursor-default">
+                <Image src="/SCSVMV.png" alt="SCSVMV" width={120} height={40} className="h-12 sm:h-14 w-auto object-contain" />
+              </motion.div>
+            </div>
           </motion.div>
           
           <motion.div
