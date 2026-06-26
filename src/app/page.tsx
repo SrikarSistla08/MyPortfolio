@@ -745,36 +745,34 @@ const ProjectsShowcase = () => {
               transition={{ duration: 0.2, delay: index * 0.02 }}
               className="group cursor-pointer border border-gray-800 hover:border-green-400 transition-colors duration-200 block"
             >
-              <div className="relative h-64 overflow-hidden">
-                {project.video ? (
-                  <video
-                    src={project.video}
-                    autoPlay={project.autoplay}
-                    loop={project.loop}
-                    muted={project.muted}
-                    playsInline
-                    className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90"
-                  />
-                ) : project.image ? (
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-opacity duration-200 group-hover:opacity-90"
-                    loading="lazy"
-                    quality={80}
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                    <span className="text-gray-400 font-mono">No preview</span>
+              {(project.video || project.image) && (
+                <div className="relative h-64 overflow-hidden">
+                  {project.video ? (
+                    <video
+                      src={project.video}
+                      autoPlay={project.autoplay}
+                      loop={project.loop}
+                      muted={project.muted}
+                      playsInline
+                      className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90"
+                    />
+                  ) : (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-opacity duration-200 group-hover:opacity-90"
+                      loading="lazy"
+                      quality={80}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200" />
+                  <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="text-xs font-mono text-green-400 mb-1">{project.category}</div>
+                    <div className="text-sm font-bold">{project.title}</div>
                   </div>
-                )}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200" />
-                <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <div className="text-xs font-mono text-green-400 mb-1">{project.category}</div>
-                  <div className="text-sm font-bold">{project.title}</div>
                 </div>
-              </div>
+              )}
               <div className="p-4 sm:p-6 bg-gray-900">
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 font-mono leading-tight">{project.title}</h3>
                 <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
