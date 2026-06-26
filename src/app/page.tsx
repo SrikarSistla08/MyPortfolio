@@ -68,8 +68,8 @@ const Navigation = () => {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
         <div className="flex justify-between items-center">
-          <a href="#" className="text-green-400 font-mono text-sm font-bold hover:text-white transition-colors">
-            srikar
+          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-green-400 font-mono text-sm font-bold hover:text-white transition-colors cursor-pointer">
+            Srikar
           </a>
           
           {/* Desktop Navigation */}
@@ -1719,12 +1719,12 @@ const Contact = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
             <a
-              href="mailto:srikarsistla710@gmail.com"
+              href="mailto:Srikarsistla710@gmail.com"
               className="group border border-gray-800 hover:border-green-400 p-6 sm:p-8 transition-all duration-300 text-left"
             >
               <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">✉️</div>
               <div className="text-sm sm:text-base font-mono text-white group-hover:text-green-400 transition-colors mb-2">Email</div>
-              <div className="text-xs sm:text-sm font-mono text-gray-500 break-all">srikarsistla710@gmail.com</div>
+              <div className="text-xs sm:text-sm font-mono text-gray-500 break-all">Srikarsistla710@gmail.com</div>
             </a>
             <a
               href="https://github.com/SrikarSistla08"
@@ -1737,20 +1737,20 @@ const Contact = () => {
               <div className="text-xs sm:text-sm font-mono text-gray-500">@SrikarSistla08</div>
             </a>
             <a
-              href="https://www.linkedin.com/in/srikarsistla/"
+              href="https://www.linkedin.com/in/Srikarsistla/"
               target="_blank"
               rel="noopener noreferrer"
               className="group border border-gray-800 hover:border-green-400 p-6 sm:p-8 transition-all duration-300 text-left"
             >
               <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">💼</div>
               <div className="text-sm sm:text-base font-mono text-white group-hover:text-green-400 transition-colors mb-2">LinkedIn</div>
-              <div className="text-xs sm:text-sm font-mono text-gray-500">/in/srikarsistla</div>
+              <div className="text-xs sm:text-sm font-mono text-gray-500">/in/Srikarsistla</div>
             </a>
           </div>
 
           <div className="pt-4">
             <a
-              href="mailto:srikarsistla710@gmail.com"
+              href="mailto:Srikarsistla710@gmail.com"
               className="inline-block border border-green-400 px-8 py-4 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
             >
               {'>'} send_message
