@@ -1762,6 +1762,55 @@ const Contact = () => {
   );
 };
 
+// Spider Scroll Animation
+const SpiderAnimation = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(window.scrollY / totalHeight, 1);
+      setScrollProgress(progress);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const spiderY = scrollProgress * (typeof window !== 'undefined' ? window.innerHeight - 40 : 0);
+
+  return (
+    <div className="fixed left-3 top-0 h-full z-40 pointer-events-none hidden lg:block">
+      {/* Web line */}
+      <div 
+        className="absolute left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-gray-700 to-transparent"
+        style={{ height: `${scrollProgress * 100}%` }}
+      />
+      {/* Spider */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 transition-transform duration-100 ease-out"
+        style={{ transform: `translateX(-50%) translateY(${spiderY}px)` }}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Spider body */}
+          <circle cx="12" cy="14" r="4" fill="#374151" stroke="#6B7280" strokeWidth="1"/>
+          <circle cx="12" cy="8" r="3" fill="#374151" stroke="#6B7280" strokeWidth="1"/>
+          {/* Eyes */}
+          <circle cx="10.5" cy="7" r="1" fill="#EF4444"/>
+          <circle cx="13.5" cy="7" r="1" fill="#EF4444"/>
+          {/* Legs - left */}
+          <path d="M8 12 L2 8" stroke="#6B7280" strokeWidth="1" strokeLinecap="round"/>
+          <path d="M8 14 L1 14" stroke="#6B7280" strokeWidth="1" strokeLinecap="round"/>
+          <path d="M8 16 L2 20" stroke="#6B7280" strokeWidth="1" strokeLinecap="round"/>
+          {/* Legs - right */}
+          <path d="M16 12 L22 8" stroke="#6B7280" strokeWidth="1" strokeLinecap="round"/>
+          <path d="M16 14 L23 14" stroke="#6B7280" strokeWidth="1" strokeLinecap="round"/>
+          <path d="M16 16 L22 20" stroke="#6B7280" strokeWidth="1" strokeLinecap="round"/>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
 // Sticky Floating CTA
 const StickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -1847,6 +1896,7 @@ export default function Home() {
         <PhotographyGallery />
         <Contact />
         <Footer />
+        <SpiderAnimation />
         <StickyCTA />
       </div>
   );
