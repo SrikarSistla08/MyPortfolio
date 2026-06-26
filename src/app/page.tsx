@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -9,6 +9,15 @@ const Navigation = () => {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  const navLinks = useMemo(() => [
+    { href: "#about", label: "./about", description: "(story)" },
+    { href: "#experience", label: "./experience", description: "(work)" },
+    { href: "#work", label: "./work", description: "(11 repos)" },
+    { href: "#awards", label: "./awards", description: "(grants)" },
+    { href: "#contact", label: "./contact", description: "(ping me)" },
+  ], []);
 
   useEffect(() => {
     setMounted(true);
@@ -18,7 +27,7 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     
     const updateTime = () => setCurrentTime(new Date().toLocaleTimeString());
-    updateTime(); // Set initial time
+    updateTime();
     const timer = setInterval(updateTime, 1000);
     
     return () => {
@@ -27,9 +36,36 @@ const Navigation = () => {
     };
   }, []);
 
-  const toggleMobileMenu = () => {
+  useEffect(() => {
+    const sectionIds = navLinks.map(link => link.href.replace("#", ""));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveSection(`#${id}`);
+              }
+            });
+          },
+          { threshold: 0.3, rootMargin: "-80px 0px -40% 0px" }
+        );
+        observer.observe(element);
+        observers.push(observer);
+      }
+    });
+
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, [navLinks]);
+
+  const toggleMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  }, [isMobileMenuOpen]);
 
   return (
     <motion.nav
@@ -39,7 +75,7 @@ const Navigation = () => {
         isScrolled ? "bg-black/95 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex justify-between items-center">
           <motion.div
             whileHover={{ opacity: 0.8 }}
@@ -61,26 +97,20 @@ const Navigation = () => {
               </div>
             )}
             <div className="flex space-x-6 text-sm font-mono">
-              <a href="#about" className="text-green-400 hover:text-white transition-colors group">
-                ./about
-                <span className="text-xs text-gray-500 ml-1 group-hover:text-gray-400">(story)</span>
-              </a>
-              <a href="#experience" className="text-green-400 hover:text-white transition-colors group">
-                ./experience
-                <span className="text-xs text-gray-500 ml-1 group-hover:text-gray-400">(work)</span>
-              </a>
-              <a href="#work" className="text-green-400 hover:text-white transition-colors group">
-                ./work
-                <span className="text-xs text-gray-500 ml-1 group-hover:text-gray-400">(11 repos)</span>
-              </a>
-              <a href="#awards" className="text-green-400 hover:text-white transition-colors group">
-                ./awards
-                <span className="text-xs text-gray-500 ml-1 group-hover:text-gray-400">(grants)</span>
-              </a>
-              <a href="#contact" className="text-green-400 hover:text-white transition-colors group">
-                ./contact
-                <span className="text-xs text-gray-500 ml-1 group-hover:text-gray-400">(ping me)</span>
-              </a>
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`transition-colors group ${
+                    activeSection === link.href
+                      ? "text-white"
+                      : "text-green-400 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                  <span className="text-xs text-gray-500 ml-1 group-hover:text-gray-400">{link.description}</span>
+                </a>
+              ))}
             </div>
           </div>
 
@@ -116,41 +146,20 @@ const Navigation = () => {
                 {currentTime}
               </div>
             )}
-            <a 
-              href="#about" 
-              className="block text-green-400 hover:text-white transition-colors font-mono text-sm py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              ./about <span className="text-xs text-gray-500">(story)</span>
-            </a>
-            <a 
-              href="#experience" 
-              className="block text-green-400 hover:text-white transition-colors font-mono text-sm py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              ./experience <span className="text-xs text-gray-500">(work)</span>
-            </a>
-            <a 
-              href="#work" 
-              className="block text-green-400 hover:text-white transition-colors font-mono text-sm py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              ./work <span className="text-xs text-gray-500">(11 repos)</span>
-            </a>
-            <a 
-              href="#awards" 
-              className="block text-green-400 hover:text-white transition-colors font-mono text-sm py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              ./awards <span className="text-xs text-gray-500">(grants)</span>
-            </a>
-            <a 
-              href="#contact" 
-              className="block text-green-400 hover:text-white transition-colors font-mono text-sm py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              ./contact <span className="text-xs text-gray-500">(ping me)</span>
-            </a>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`block transition-colors font-mono text-sm py-2 ${
+                  activeSection === link.href
+                    ? "text-white"
+                    : "text-green-400 hover:text-white"
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label} <span className="text-xs text-gray-500">{link.description}</span>
+              </a>
+            ))}
           </div>
         </motion.div>
       </div>
@@ -195,7 +204,7 @@ const TypingAnimation = () => {
   
   return (
     <span className="text-lg text-green-400 mb-6">
-      <span className="text-gray-400">//</span> {currentText}
+      <span className="text-gray-400">{"//"}</span> {currentText}
       <span className="animate-terminal-blink">|</span>
     </span>
   );
@@ -264,7 +273,7 @@ const Hero = () => {
           >
               <div className="flex items-center flex-wrap">
                 <span className="text-green-400 mr-2">❯</span>
-                <span className="text-gray-400">// Available for collaboration</span>
+                <span className="text-gray-400">{"// Available for collaboration"}</span>
                 <span className="text-green-400 ml-2">●</span>
               </div>
               <div className="flex items-center text-xs text-gray-500 flex-wrap">
@@ -280,16 +289,27 @@ const Hero = () => {
               initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, delay: 0.2 }}
-              className="flex justify-start mt-6 sm:mt-8"
+              className="flex justify-start mt-6 sm:mt-8 flex-wrap gap-3"
             >
-              <div className="w-6 h-6 sm:w-8 sm:h-8 border border-green-400 rounded-full flex items-center justify-center">
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="w-1 h-1 bg-green-400 rounded-full"
-                />
-              </div>
-          </motion.div>
+              <a
+                href="/Resume.pdf"
+                className="inline-block border border-green-400 px-6 py-3 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
+              >
+                {'>'} download_resume.pdf
+              </a>
+              <a
+                href="#work"
+                className="inline-block border border-green-400 px-6 py-3 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
+              >
+                {'>'} view_my_work
+              </a>
+              <a
+                href="#contact"
+                className="inline-block border border-gray-600 px-6 py-3 text-sm font-mono text-gray-400 hover:border-green-400 hover:text-green-400 transition-colors duration-300"
+              >
+                {'>'} contact_me
+              </a>
+            </motion.div>
         </motion.div>
       </div>
       </div>
@@ -505,6 +525,29 @@ const Experience = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Post-Experience CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
+            className="mt-12 sm:mt-16 text-center border border-gray-800 p-6 sm:p-8 bg-gray-900"
+          >
+            <p className="text-gray-400 font-mono text-sm sm:text-base mb-4">
+              <span className="text-yellow-400">$</span> echo &quot;Looking for your next team member?&quot;
+            </p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white font-mono mb-4">WANT TO SEE WHAT I CAN BRING?</h3>
+            <p className="text-gray-400 font-mono text-sm mb-6 max-w-xl mx-auto">
+              I&apos;m ready to bring my experience in full-stack development, data engineering, and AI to your team.
+            </p>
+            <a
+              href="#contact"
+              className="inline-block border border-green-400 px-8 py-3 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
+            >
+              {'>'} let&apos;s_talk
+            </a>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -548,7 +591,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-black text-green-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -594,6 +637,22 @@ const Skills = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Skills → Projects Bridge CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3 }}
+          className="mt-12 sm:mt-16 text-center"
+        >
+          <a
+            href="#work"
+            className="inline-block text-green-400 hover:text-white font-mono text-sm sm:text-base transition-colors duration-300 group"
+          >
+            See these skills in action <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -717,7 +776,7 @@ const ProjectsShowcase = () => {
 
   return (
     <section id="work" className="py-12 sm:py-16 lg:py-20 bg-black text-green-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
       <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -800,85 +859,29 @@ const ProjectsShowcase = () => {
             </motion.a>
           ))}
         </div>
-      </div>
-    </section>
-  );
-};
-// Achievements Section
-const Achievements = () => {
-  const achievements = [
-    {
-      icon: "🏆",
-      title: "Pull Shark",
-      description: "Merged multiple pull requests on GitHub",
-      badge: "GitHub Achievement"
-    },
-    {
-      icon: "⚡",
-      title: "Quickdraw",
-      description: "Closed issues and PRs in record time",
-      badge: "GitHub Achievement"
-    },
-    {
-      icon: "📜",
-      title: "Published Research",
-      description: "Diabetes Prediction Using SVM - Published research paper with 80% accuracy model",
-      badge: "Publication"
-    },
-    {
-      icon: "🎓",
-      title: "UMBC Information Systems",
-      description: "Master's degree in Information Systems from University of Maryland, Baltimore County",
-      badge: "Education"
-    },
-    {
-      icon: "💻",
-      title: "Software Engineer",
-      description: "Software Engineer Intern at TANTVSTUDIOS + Front End Developer at Valhalla Data Systems",
-      badge: "Experience"
-    }
-  ];
 
-  return (
-    <section id="achievements" className="py-12 sm:py-16 lg:py-20 bg-black text-green-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Post-Projects CTA */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-12 sm:mb-16"
+          transition={{ duration: 0.3 }}
+          className="mt-12 sm:mt-16 text-center border border-gray-800 p-6 sm:p-8 bg-gray-900"
         >
-          <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
-            <span className="text-yellow-400">$</span> cat achievements.log
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">ACHIEVEMENTS</h2>
-          <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto"></div>
+          <p className="text-gray-400 font-mono text-sm sm:text-base mb-4">
+            <span className="text-yellow-400">$</span> echo &quot;Interested in working together?&quot;
+          </p>
+          <h3 className="text-xl sm:text-2xl font-bold text-white font-mono mb-4">HAVE A PROJECT IN MIND?</h3>
+          <p className="text-gray-400 font-mono text-sm mb-6 max-w-xl mx-auto">
+            I&apos;m always looking for new challenges and collaborations. Let&apos;s build something great together.
+          </p>
+          <a
+            href="#contact"
+            className="inline-block border border-green-400 px-8 py-3 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
+          >
+            {'>'} start_conversation
+          </a>
         </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="border border-gray-800 hover:border-green-400 transition-colors duration-300 p-4 sm:p-6 bg-gray-900"
-            >
-              <div className="flex items-start space-x-3 sm:space-x-4">
-                <span className="text-2xl sm:text-3xl flex-shrink-0">{achievement.icon}</span>
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold text-white font-mono mb-1">{achievement.title}</h3>
-                  <p className="text-xs sm:text-sm text-gray-300 mb-2">{achievement.description}</p>
-                  <span className="inline-block px-2 py-1 text-xs font-mono bg-green-400/10 text-green-400 border border-green-400/30">
-                    {achievement.badge}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -968,7 +971,7 @@ const Publications = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
-            <span className="text-yellow-400">$</span> grep -r "publications" .
+            <span className="text-yellow-400">$</span> grep -r &quot;publications&quot; .
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">PUBLICATIONS</h2>
           <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto mb-4 sm:mb-6"></div>
@@ -1052,6 +1055,29 @@ const Publications = () => {
             </motion.a>
           ))}
         </div>
+
+        {/* Post-Publications CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3 }}
+          className="mt-12 sm:mt-16 text-center border border-gray-800 p-6 sm:p-8 bg-black"
+        >
+          <p className="text-gray-400 font-mono text-sm sm:text-base mb-4">
+            <span className="text-yellow-400">$</span> echo &quot;Research collaboration?&quot;
+          </p>
+          <h3 className="text-xl sm:text-2xl font-bold text-white font-mono mb-4">INTERESTED IN COLLABORATING?</h3>
+          <p className="text-gray-400 font-mono text-sm mb-6 max-w-xl mx-auto">
+            I&apos;m passionate about research in ML/AI, healthcare analytics, and data science. Let&apos;s work together.
+          </p>
+          <a
+            href="#contact"
+            className="inline-block border border-green-400 px-8 py-3 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
+          >
+            {'>'} reach_out
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -1076,52 +1102,6 @@ const Awards = () => {
     }
   ];
 
-  return (
-    <section id="awards" className="py-12 sm:py-16 lg:py-20 bg-black text-green-400">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
-            <span className="text-yellow-400">$</span> cat awards.json
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">AWARDS & GRANTS</h2>
-          <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto"></div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          {awards.map((award, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="border border-gray-800 hover:border-green-400 transition-colors duration-300 p-4 sm:p-6 bg-gray-900"
-            >
-              <div className="flex items-start space-x-3 sm:space-x-4">
-                <span className="text-2xl sm:text-3xl flex-shrink-0">{award.icon}</span>
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold text-white font-mono">{award.title}</h3>
-                  <p className="text-xs sm:text-sm text-green-400 font-mono">{award.org}</p>
-                  <p className="text-xs text-gray-500 font-mono mt-1">{award.year}</p>
-                  <p className="text-xs sm:text-sm text-gray-300 mt-2">{award.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Certifications Section
-const Certifications = () => {
   const certs = [
     {
       title: "Business Analysis Foundations",
@@ -1144,7 +1124,7 @@ const Certifications = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gray-900 text-green-400">
+    <section id="awards" className="py-12 sm:py-16 lg:py-20 bg-black text-green-400">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0 }}
@@ -1154,34 +1134,75 @@ const Certifications = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
-            <span className="text-yellow-400">$</span> ls certifications/
+            <span className="text-yellow-400">$</span> cat awards.json
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">CERTIFICATIONS</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">RECOGNITION & CREDENTIALS</h2>
           <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-          {certs.map((cert, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="border border-gray-800 hover:border-green-400 transition-colors duration-300 p-4 sm:p-6 bg-black text-center"
-            >
-              <span className="text-3xl sm:text-4xl block mb-3">{cert.icon}</span>
-              <h3 className="text-sm sm:text-base font-bold text-white font-mono mb-1">{cert.title}</h3>
-              <p className="text-xs text-gray-400 font-mono mb-2">{cert.org}</p>
-              <span className={`text-xs font-mono px-2 py-0.5 ${
-                cert.status === "Completed" 
-                  ? "bg-green-400/20 text-green-400 border border-green-400/30" 
-                  : "bg-yellow-400/20 text-yellow-400 border border-yellow-400/30"
-              }`}>
-                {cert.status === "Completed" ? "✓ completed" : "● in_progress"}
-              </span>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+          {/* Awards Column */}
+          <div>
+            <h3 className="text-sm sm:text-base font-mono text-gray-400 mb-4 sm:mb-6 flex items-center">
+              <span className="text-green-400 mr-2">❯</span> Awards & Grants
+            </h3>
+            <div className="space-y-4">
+              {awards.map((award, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="border border-gray-800 hover:border-green-400 transition-colors duration-300 p-4 sm:p-6 bg-gray-900"
+                >
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0">{award.icon}</span>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-white font-mono">{award.title}</h4>
+                      <p className="text-xs sm:text-sm text-green-400 font-mono">{award.org}</p>
+                      <p className="text-xs text-gray-500 font-mono mt-1">{award.year}</p>
+                      <p className="text-xs sm:text-sm text-gray-300 mt-2">{award.description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Certifications Column */}
+          <div>
+            <h3 className="text-sm sm:text-base font-mono text-gray-400 mb-4 sm:mb-6 flex items-center">
+              <span className="text-green-400 mr-2">❯</span> Certifications
+            </h3>
+            <div className="space-y-4">
+              {certs.map((cert, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="border border-gray-800 hover:border-green-400 transition-colors duration-300 p-4 sm:p-6 bg-gray-900"
+                >
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0">{cert.icon}</span>
+                    <div className="flex-1">
+                      <h4 className="text-base sm:text-lg font-bold text-white font-mono">{cert.title}</h4>
+                      <p className="text-xs sm:text-sm text-green-400 font-mono">{cert.org}</p>
+                      <span className={`inline-block text-xs font-mono px-2 py-0.5 mt-2 ${
+                        cert.status === "Completed" 
+                          ? "bg-green-400/20 text-green-400 border border-green-400/30" 
+                          : "bg-yellow-400/20 text-yellow-400 border border-yellow-400/30"
+                      }`}>
+                        {cert.status === "Completed" ? "✓ completed" : "● in_progress"}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1347,7 +1368,7 @@ const PhotographyGallery = () => {
 
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-gray-900 text-green-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -1589,6 +1610,29 @@ const PhotographyGallery = () => {
       </motion.div>
         )}
       </div>
+
+      {/* Photography CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+        className="max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16 text-center border border-gray-800 p-6 sm:p-8 bg-black"
+      >
+        <p className="text-gray-400 font-mono text-sm sm:text-base mb-4">
+          <span className="text-yellow-400">$</span> echo &quot;Need a photographer?&quot;
+        </p>
+        <h3 className="text-xl sm:text-2xl font-bold text-white font-mono mb-4">NEED PHOTOGRAPHY FOR YOUR PROJECT?</h3>
+        <p className="text-gray-400 font-mono text-sm mb-6 max-w-xl mx-auto">
+          From event coverage to product photography, I bring a unique perspective to every shoot.
+        </p>
+        <a
+          href="#contact"
+          className="inline-block border border-green-400 px-8 py-3 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
+        >
+          {'>'} book_session
+        </a>
+      </motion.div>
     </section>
   );
 };
@@ -1684,49 +1728,92 @@ const About = () => {
 const Contact = () => {
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-gray-900 text-green-400">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-6 sm:space-y-8"
+          className="space-y-8 sm:space-y-10"
         >
           <div className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 font-mono">
             <span className="text-yellow-400">$</span> contact --help
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">CONTACT</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 font-mono">LET&apos;S BUILD SOMETHING</h2>
           <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto mb-6 sm:mb-8"></div>
           
-          <p className="text-base sm:text-lg text-gray-300 font-mono">
-            Ready to collaborate or just want to say hello?
+          <p className="text-base sm:text-lg text-gray-300 font-mono max-w-2xl mx-auto">
+            I&apos;m always interested in new opportunities, collaborations, and conversations. Whether you have a question or just want to say hi — my inbox is open.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 lg:space-x-8 text-sm font-mono">
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
             <a
               href="mailto:srikarsistla710@gmail.com"
-              className="text-green-400 hover:text-white transition-colors"
+              className="group border border-gray-800 hover:border-green-400 p-6 sm:p-8 transition-all duration-300 text-left"
             >
-              {'>'} srikarsistla710@gmail.com
+              <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">✉️</div>
+              <div className="text-sm sm:text-base font-mono text-white group-hover:text-green-400 transition-colors mb-2">Email</div>
+              <div className="text-xs sm:text-sm font-mono text-gray-500 break-all">srikarsistla710@gmail.com</div>
             </a>
             <a
               href="https://github.com/SrikarSistla08"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-400 hover:text-white transition-colors"
+              className="group border border-gray-800 hover:border-green-400 p-6 sm:p-8 transition-all duration-300 text-left"
             >
-              {'>'} github.com/SrikarSistla08
+              <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">⌨️</div>
+              <div className="text-sm sm:text-base font-mono text-white group-hover:text-green-400 transition-colors mb-2">GitHub</div>
+              <div className="text-xs sm:text-sm font-mono text-gray-500">@SrikarSistla08</div>
             </a>
             <a
               href="https://www.linkedin.com/in/srikarsistla/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-400 hover:text-white transition-colors"
+              className="group border border-gray-800 hover:border-green-400 p-6 sm:p-8 transition-all duration-300 text-left"
             >
-              {'>'} linkedin.com/in/srikarsistla
+              <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">💼</div>
+              <div className="text-sm sm:text-base font-mono text-white group-hover:text-green-400 transition-colors mb-2">LinkedIn</div>
+              <div className="text-xs sm:text-sm font-mono text-gray-500">/in/srikarsistla</div>
+            </a>
+          </div>
+
+          <div className="pt-4">
+            <a
+              href="mailto:srikarsistla710@gmail.com"
+              className="inline-block border border-green-400 px-8 py-4 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
+            >
+              {'>'} send_message
             </a>
           </div>
         </motion.div>
       </div>
     </section>
+  );
+};
+
+// Sticky Floating CTA
+const StickyCTA = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show after scrolling past hero (roughly 100vh)
+      setIsVisible(window.scrollY > window.innerHeight);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  if (!isVisible) return null;
+
+  return (
+    <motion.a
+      href="#contact"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="fixed bottom-6 right-6 z-50 bg-green-400 text-black px-4 py-3 font-mono text-sm font-bold hover:bg-green-300 transition-colors duration-300 shadow-lg shadow-green-400/20"
+    >
+      {'>'} hire_me
+    </motion.a>
   );
 };
 
@@ -1739,16 +1826,32 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="py-8 bg-black text-green-400 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <div className="text-sm font-mono">
-          <span className="text-gray-400">$</span> {`echo "© ${mounted ? new Date().getFullYear() : '2024'} Srikar Sistla. All rights reserved."`}
+    <footer className="py-12 bg-black text-green-400 border-t border-gray-800">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Footer CTA */}
+        <div className="text-center mb-8">
+          <p className="text-gray-400 font-mono text-sm mb-4">
+            <span className="text-yellow-400">$</span> echo &quot;Like what you see?&quot;
+          </p>
+          <a
+            href="#contact"
+            className="inline-block border border-green-400 px-8 py-3 text-sm font-mono text-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300"
+          >
+            {'>'} lets_connect
+          </a>
         </div>
-        <div className="text-xs text-gray-500 font-mono mt-2">
-          <span className="text-yellow-400">$</span> uptime
-        </div>
-        <div className="text-gray-400 font-mono text-xs mt-1">
-          Running on <span className="text-green-400">Next.js</span> | Built with <span className="text-blue-400">love</span> and <span className="text-purple-400">coffee</span>
+
+        {/* Footer Info */}
+        <div className="text-center border-t border-gray-800 pt-8">
+          <div className="text-sm font-mono mb-2">
+            <span className="text-gray-400">$</span> {`echo "© ${mounted ? new Date().getFullYear() : '2024'} Srikar Sistla. All rights reserved."`}
+          </div>
+          <div className="text-xs text-gray-500 font-mono mb-2">
+            <span className="text-yellow-400">$</span> uptime
+          </div>
+          <div className="text-gray-400 font-mono text-xs">
+            Running on <span className="text-green-400">Next.js</span> | Built with <span className="text-blue-400">love</span> and <span className="text-purple-400">coffee</span>
+          </div>
         </div>
       </div>
     </footer>
@@ -1764,15 +1867,15 @@ export default function Home() {
         <Hero />
         <About />
         <Experience />
-        <ProjectsShowcase />
         <Skills />
+        <ProjectsShowcase />
         <Publications />
         <Awards />
-        <Certifications />
         <FutureGoals />
         <PhotographyGallery />
         <Contact />
         <Footer />
+        <StickyCTA />
       </div>
   );
 }
