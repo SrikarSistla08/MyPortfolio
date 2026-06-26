@@ -20,40 +20,37 @@ const Navigation = () => {
 
   useEffect(() => {
     setMounted(true);
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Determine active section based on scroll position
+      const sections = navLinks.map(link => ({
+        id: link.href.replace("#", ""),
+        el: document.getElementById(link.href.replace("#", ""))
+      })).filter(s => s.el);
+      
+      const scrollPos = window.scrollY + 120;
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.el && section.el.offsetTop <= scrollPos) {
+          setActiveSection(section.href || `#${section.id}`);
+          break;
+        }
+      }
+      
+      // If at top, set first section
+      if (window.scrollY < 200 && sections.length > 0) {
+        setActiveSection("");
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Run once on mount
     
     return () => {
       window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const sectionIds = navLinks.map(link => link.href.replace("#", ""));
-    const observers: IntersectionObserver[] = [];
-
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setActiveSection(`#${id}`);
-              }
-            });
-          },
-          { threshold: 0.3, rootMargin: "-80px 0px -40% 0px" }
-        );
-        observer.observe(element);
-        observers.push(observer);
-      }
-    });
-
-    return () => {
-      observers.forEach(observer => observer.disconnect());
     };
   }, [navLinks]);
 
