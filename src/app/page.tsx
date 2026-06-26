@@ -282,6 +282,7 @@ const Hero = () => {
                 {'>'} contact_me
               </a>
             </motion.div>
+            <EasterEggTerminal />
         </motion.div>
       </div>
       </div>
@@ -289,7 +290,77 @@ const Hero = () => {
   );
 };
 
-// Experience Timeline Section
+// Easter Egg Terminal
+const EasterEggTerminal = () => {
+  const [input, setInput] = useState('');
+  const [history, setHistory] = useState<string[]>([]);
+  const [showTerminal, setShowTerminal] = useState(false);
+
+  const commands: Record<string, string> = {
+    'help': 'Available commands: help, skills, projects, contact, secret, clear',
+    'skills': 'Python, JavaScript, TypeScript, React, Next.js, Node.js, AWS, SQL, Power BI',
+    'projects': '11 repos on GitHub | Data Analysis, Web Dev, ML, Startups',
+    'contact': 'Email: Srikarsistla710@gmail.com | LinkedIn: /in/srikarsistla',
+    'secret': '🕷️ You found the easter egg! I\'m a Spider-Man fan. With great power comes great responsibility.',
+    'clear': '__CLEAR__',
+  };
+
+  const handleCommand = (cmd: string) => {
+    const trimmed = cmd.trim().toLowerCase();
+    const response = commands[trimmed] || `Command not found: ${trimmed}. Type "help" for available commands.`;
+    
+    if (response === '__CLEAR__') {
+      setHistory([]);
+    } else {
+      setHistory(prev => [...prev, `$ ${cmd}`, response]);
+    }
+    setInput('');
+  };
+
+  if (!showTerminal) {
+    return (
+      <button
+        onClick={() => setShowTerminal(true)}
+        className="text-xs text-gray-600 hover:text-gray-400 font-mono mt-4 transition-colors"
+      >
+        {'$'} hint: try typing something...
+      </button>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: 'auto' }}
+      className="mt-4 border border-gray-800 bg-gray-900/50 p-3 max-w-md"
+    >
+      <div className="text-xs text-gray-500 mb-2 font-mono">Type "help" for commands</div>
+      <div className="h-32 overflow-y-auto mb-2 font-mono text-xs">
+        {history.map((line, i) => (
+          <div key={i} className={line.startsWith('$') ? 'text-green-400' : 'text-gray-400'}>
+            {line}
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center font-mono text-xs">
+        <span className="text-yellow-400 mr-2">$</span>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && input.trim()) {
+              handleCommand(input);
+            }
+          }}
+          className="flex-1 bg-transparent outline-none text-green-400"
+          placeholder="type a command..."
+          autoFocus
+        />
+      </div>
+    </motion.div>
+  );
+};
 const Experience = () => {
   const experiences = [
     {
@@ -1880,10 +1951,109 @@ const Footer = () => {
 };
 
 
+// Terminal Loading Skeleton
+const LoadingSkeleton = () => {
+  const [loading, setLoading] = useState(true);
+  const [lines, setLines] = useState<string[]>([]);
+
+  useEffect(() => {
+    const terminalLines = [
+      "$ initializing portfolio...",
+      "$ loading modules... [React, Next.js, Framer Motion]",
+      "$ mounting components...",
+      "$ fetching projects... 11 repos found",
+      "$ compiling styles... tailwindcss",
+      "$ ready."
+    ];
+
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex < terminalLines.length) {
+        setLines(prev => [...prev, terminalLines[currentIndex]]);
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+        setTimeout(() => setLoading(false), 400);
+      }
+    }, 150);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!loading) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
+    >
+      <div className="max-w-lg w-full px-6">
+        <div className="border border-gray-800 p-6 bg-gray-900">
+          <div className="flex items-center space-x-2 mb-4">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          <div className="space-y-2 font-mono text-sm">
+            {lines.map((line, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="text-gray-400"
+              >
+                {line}
+              </motion.div>
+            ))}
+            <motion.div
+              animate={{ opacity: [1, 0] }}
+              transition={{ duration: 0.5, repeat: Infinity }}
+              className="w-2 h-4 bg-green-400"
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 // Main Page Component
 export default function Home() {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't trigger if user is typing in an input
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      
+      const shortcuts: Record<string, string> = {
+        '1': '#about',
+        '2': '#experience',
+        '3': '#work',
+        '4': '#awards',
+        '5': '#contact',
+        't': 'top',
+      };
+      
+      const target = shortcuts[e.key];
+      if (target) {
+        e.preventDefault();
+        if (target === 'top') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          const el = document.querySelector(target);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-green-400 font-mono">
+      <LoadingSkeleton />
       <Navigation />
         <Hero />
         <About />

@@ -25,12 +25,18 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/S2.svg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "Srikar Sistla Portfolio",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Srikar Sistla - Photographer, Developer, Analyst",
+    description: "Multidisciplinary professional specializing in photography, software development, and business analysis.",
+    images: ["/og-image.svg"],
   },
 };
 
