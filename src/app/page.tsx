@@ -3,20 +3,19 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// Geeky Terminal-style Navigation
+// Clean Minimal Navigation
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentTime, setCurrentTime] = useState<string>("");
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
   const navLinks = useMemo(() => [
-    { href: "#about", label: "./about", description: "(story)" },
-    { href: "#experience", label: "./experience", description: "(work)" },
-    { href: "#work", label: "./work", description: "(11 repos)" },
-    { href: "#awards", label: "./awards", description: "(grants)" },
-    { href: "#contact", label: "./contact", description: "(ping me)" },
+    { href: "#about", label: "about" },
+    { href: "#experience", label: "experience" },
+    { href: "#work", label: "work" },
+    { href: "#awards", label: "awards" },
+    { href: "#contact", label: "contact" },
   ], []);
 
   useEffect(() => {
@@ -26,13 +25,8 @@ const Navigation = () => {
     };
     window.addEventListener("scroll", handleScroll);
     
-    const updateTime = () => setCurrentTime(new Date().toLocaleTimeString());
-    updateTime();
-    const timer = setInterval(updateTime, 1000);
-    
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearInterval(timer);
     };
   }, []);
 
@@ -75,40 +69,26 @@ const Navigation = () => {
         isScrolled ? "bg-black/95 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
         <div className="flex justify-between items-center">
-          <motion.div
-            whileHover={{ opacity: 0.8 }}
-            className="flex items-center space-x-2 sm:space-x-3"
-          >
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
-            <span className="ml-2 sm:ml-4 text-green-400 font-mono text-xs sm:text-sm">
-              srikar@portfolio:~$
-            </span>
-          </motion.div>
+          <a href="#" className="text-green-400 font-mono text-sm font-bold hover:text-white transition-colors">
+            srikar
+          </a>
           
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {mounted && (
-              <div className="text-green-400 font-mono text-xs">
-                {currentTime}
-              </div>
-            )}
             <div className="flex space-x-6 text-sm font-mono">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`transition-colors group ${
+                  className={`transition-colors ${
                     activeSection === link.href
                       ? "text-white"
-                      : "text-green-400 hover:text-white"
+                      : "text-gray-400 hover:text-white"
                   }`}
                 >
                   {link.label}
-                  <span className="text-xs text-gray-500 ml-1 group-hover:text-gray-400">{link.description}</span>
                 </a>
               ))}
             </div>
@@ -141,11 +121,6 @@ const Navigation = () => {
           className="lg:hidden overflow-hidden"
         >
           <div className="pt-4 pb-2 space-y-3">
-            {mounted && (
-              <div className="text-green-400 font-mono text-xs mb-3">
-                {currentTime}
-              </div>
-            )}
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -153,11 +128,11 @@ const Navigation = () => {
                 className={`block transition-colors font-mono text-sm py-2 ${
                   activeSection === link.href
                     ? "text-white"
-                    : "text-green-400 hover:text-white"
+                    : "text-gray-400 hover:text-white"
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {link.label} <span className="text-xs text-gray-500">{link.description}</span>
+                {link.label}
               </a>
             ))}
           </div>
