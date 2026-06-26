@@ -672,6 +672,7 @@ const ProjectsShowcase = () => {
       technologies: ["Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion"],
       category: "Web Development / Startup",
       link: "https://github.com/SrikarSistla08/TheValleyInc",
+      image: "/valley.png",
       status: "In Progress"
     },
     {
@@ -681,6 +682,7 @@ const ProjectsShowcase = () => {
       technologies: ["Next.js 14", "TypeScript", "Firebase", "Stripe", "Tailwind CSS"],
       category: "Web Development / Startup",
       link: "https://github.com/SrikarSistla08/CoRoute",
+      image: "/coroute.png",
       status: "In Progress"
     },
     {
@@ -690,6 +692,7 @@ const ProjectsShowcase = () => {
       technologies: ["Next.js 14", "TypeScript", "Firebase", "Tailwind CSS"],
       category: "Web Development / SaaS",
       link: "https://github.com/SrikarSistla08/CampusDeals",
+      image: "/campusdeals.png",
       status: "In Progress"
     },
     {
