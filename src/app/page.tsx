@@ -732,7 +732,7 @@ const ProjectsShowcase = () => {
           <div className="w-16 sm:w-24 h-0.5 bg-green-400 mx-auto"></div>
         </motion.div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <motion.a
               key={project.id}
@@ -743,7 +743,7 @@ const ProjectsShowcase = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.2, delay: index * 0.02 }}
-              className="group cursor-pointer border border-gray-800 hover:border-green-400 transition-colors duration-200 block"
+              className="group cursor-pointer border border-gray-800 hover:border-green-400 transition-colors duration-200 flex flex-col"
             >
               {(project.video || project.image) && (
                 <div className="relative h-64 overflow-hidden">
@@ -773,9 +773,9 @@ const ProjectsShowcase = () => {
                   </div>
                 </div>
               )}
-              <div className="p-4 sm:p-6 bg-gray-900">
+              <div className="p-4 sm:p-6 bg-gray-900 flex flex-col flex-1">
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 font-mono leading-tight">{project.title}</h3>
-                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
+                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed flex-1">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
