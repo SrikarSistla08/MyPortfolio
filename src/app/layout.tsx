@@ -8,6 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://srikarsistla22.vercel.app"),
   title: "Srikar Sistla - Photographer, Developer, Analyst",
   description: "Multidisciplinary professional specializing in photography, software development, and business analysis. Based in Maryland.",
   keywords: ["photography", "software development", "business analysis", "data science", "web development"],
